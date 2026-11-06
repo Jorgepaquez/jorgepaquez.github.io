@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mockups de marca</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #888; font-family: "Segoe UI", sans-serif; }
+  img { display: block; }
+
+  /* Cada escena mide 1600 x 1067 (3:2) y se exporta como una imagen. */
+  .escena { position: relative; width: 1600px; height: 1067px; overflow: hidden; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+  .abs { position: absolute; }
+  .sombra { box-shadow: 0 40px 70px -20px rgba(0,0,0,.45), 0 12px 24px rgba(0,0,0,.18); }
+
+  /* Notebook */
+  .laptop { width: 1040px; filter: drop-shadow(0 50px 40px rgba(0,0,0,.35)); }
+  .laptop .pantalla { background: #0c0c0e; border-radius: 26px 26px 0 0; padding: 24px 24px 28px; }
+  .laptop .pantalla > * { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 4px; overflow: hidden; }
+  .laptop .base { position: relative; height: 30px; margin: 0 -90px; border-radius: 4px 4px 26px 26px; background: linear-gradient(#e4e6ea, #b3b7be 70%, #8d9199); }
+  .laptop .base::before { content: ""; position: absolute; left: 50%; top: 0; width: 190px; height: 11px; transform: translateX(-50%); border-radius: 0 0 12px 12px; background: #9da1a8; }
+
+  /* Ventana de navegador */
+  .navegador { width: 1180px; border-radius: 16px; overflow: hidden; background: #fff; }
+  .navegador .barra { height: 62px; background: #dee1e6; display: flex; align-items: flex-end; padding: 0 18px; gap: 14px; }
+  .navegador .puntos { display: flex; gap: 9px; align-self: center; }
+  .navegador .puntos i { width: 14px; height: 14px; border-radius: 50%; background: #ff5f57; }
+  .navegador .puntos i:nth-child(2) { background: #febc2e; } .navegador .puntos i:nth-child(3) { background: #28c840; }
+  .navegador .pestana { height: 46px; background: #fff; border-radius: 12px 12px 0 0; padding: 0 60px 0 16px; display: flex; align-items: center; gap: 11px; font-size: 16px; color: #222; }
+  .navegador .pestana img { width: 22px; height: 22px; }
+  .navegador .url { height: 50px; display: flex; align-items: center; padding: 0 22px; border-bottom: 1px solid #e3e5e8; }
+  .navegador .url span { flex: 1; height: 30px; border-radius: 15px; background: #f0f2f4; font-size: 14px; color: #666; display: flex; align-items: center; padding-left: 16px; }
+
+  /* Tarjetas personales */
+  .tarj { width: 560px; height: 330px; border-radius: 16px; display: flex; align-items: center; justify-content: center; }
+
+  /* Teléfono */
+  .telefono { width: 400px; height: 820px; border-radius: 56px; background: #0b0b0d; padding: 14px; }
+  .telefono .vista { width: 100%; height: 100%; border-radius: 44px; overflow: hidden; background: #fff; position: relative; }
+  .telefono .vista::before { content: ""; position: absolute; left: 50%; top: 12px; width: 110px; height: 28px; border-radius: 14px; background: #0b0b0d; transform: translateX(-50%); z-index: 2; }
+
+  /* Broche de ropa */
+  .broche { position: absolute; width: 26px; height: 92px; border-radius: 5px; background: #be0b5f; left: 50%; top: -46px; transform: translateX(-50%); box-shadow: 0 4px 8px rgba(0,0,0,.25); }
+  .broche::after { content: ""; position: absolute; left: -4px; right: -4px; top: 34px; height: 22px; border: 3px solid #e58fb8; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ================= KAKEIBO ================= -->
+<section class="escena" data-salida="kakeibo/mockup-1" style="background:linear-gradient(160deg,#f9f6ee 55%,#ebe5d4)">
+  <div class="abs" style="right:-120px;top:-160px;width:620px;height:620px;border-radius:50%;background:#003c98"></div>
+  <div class="abs" style="left:70px;bottom:70px;font-family:'Yu Mincho','MS Mincho',serif;font-size:150px;color:#e3ddca;letter-spacing:10px">家計簿</div>
+  <div class="laptop"><div class="pantalla"><img src="recursos/kakeibo-app-02.png" alt=""></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="kakeibo/mockup-2" style="background:linear-gradient(140deg,#e9e2cf,#d8cfb6)">
+  <!-- Cuaderno de cuentas -->
+  <div class="abs sombra" style="left:330px;top:120px;width:600px;height:830px;border-radius:10px 26px 26px 10px;background:linear-gradient(90deg,#141310 0,#24221d 5%,#1d1c18 9%);transform:rotate(-7deg)">
+    <div class="abs" style="right:70px;top:0;bottom:0;width:26px;background:#f1aa00"></div>
+    <img class="abs" src="recursos/kakeibo-iso-ambar.png" alt="" style="left:170px;top:230px;width:230px">
+    <div class="abs" style="left:0;right:96px;top:520px;text-align:center;color:#f3efe4;font-size:54px;font-weight:700">Kakeibo</div>
+    <div class="abs" style="left:0;right:96px;top:604px;text-align:center;color:#8f8a7c;font-size:15px;letter-spacing:5px">TU ECONOMÍA DEL HOGAR, EN ORDEN</div>
+  </div>
+  <!-- Lápiz -->
+  <div class="abs" style="left:1010px;top:170px;width:26px;height:660px;border-radius:5px 5px 2px 2px;background:linear-gradient(90deg,#002d73,#003c98 50%,#002d73);transform:rotate(11deg);box-shadow:14px 18px 22px rgba(0,0,0,.25)">
+    <div class="abs" style="left:0;right:0;top:0;height:46px;background:#f1aa00;border-radius:5px 5px 0 0"></div>
+    <div class="abs" style="left:0;bottom:-44px;border-left:13px solid transparent;border-right:13px solid transparent;border-top:44px solid #e9c9a0"></div>
+  </div>
+  <!-- Tarjeta -->
+  <div class="abs sombra" style="left:1090px;top:560px;width:400px;height:236px;border-radius:12px;background:#f9f6ee;transform:rotate(9deg);display:flex;align-items:center;justify-content:center;gap:18px;border-top:10px solid #003c98">
+    <img src="recursos/kakeibo-iso-azul.png" alt="" style="width:76px"><span style="font-size:46px;font-weight:700;color:#2a2620">Kakeibo</span>
+  </div>
+</section>
+
+<section class="escena" data-salida="kakeibo/mockup-3" style="background:radial-gradient(circle at 30% 30%,#2b2924,#141310)">
+  <div class="abs" style="right:60px;top:40px;font-family:'Yu Mincho','MS Mincho',serif;font-size:300px;line-height:1.05;color:#24221d;writing-mode:vertical-rl">家計簿</div>
+  <!-- Ícono de aplicación -->
+  <div class="abs sombra" style="left:190px;top:250px;width:440px;height:440px;border-radius:98px;background:linear-gradient(150deg,#0a4ab5,#003c98);display:flex;align-items:center;justify-content:center"><img src="recursos/kakeibo-iso-blanco.png" alt="" style="width:260px"></div>
+  <div class="abs sombra" style="left:700px;top:250px;width:200px;height:200px;border-radius:45px;background:#f9f6ee;display:flex;align-items:center;justify-content:center"><img src="recursos/kakeibo-iso-azul.png" alt="" style="width:118px"></div>
+  <div class="abs sombra" style="left:700px;top:490px;width:200px;height:200px;border-radius:45px;background:#1d1c18;border:2px solid #3a372f;display:flex;align-items:center;justify-content:center"><img src="recursos/kakeibo-iso-ambar.png" alt="" style="width:118px"></div>
+  <!-- Barra de tareas -->
+  <div class="abs" style="left:190px;top:790px;width:710px;height:84px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;gap:26px">
+    <i style="width:46px;height:46px;border-radius:11px;background:#4c4a44"></i><i style="width:46px;height:46px;border-radius:11px;background:#4c4a44"></i>
+    <div style="width:56px;height:56px;border-radius:13px;background:#003c98;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(241,170,0,.55)"><img src="recursos/kakeibo-iso-blanco.png" alt="" style="width:34px"></div>
+    <i style="width:46px;height:46px;border-radius:11px;background:#4c4a44"></i><i style="width:46px;height:46px;border-radius:11px;background:#4c4a44"></i>
+  </div>
+</section>
+
+<!-- ================= PHOTOSORTER ================= -->
+<section class="escena" data-salida="photosorter/mockup-1" style="background:radial-gradient(circle at 70% 20%,#12233c,#07111f 70%)">
+  <div class="abs" style="left:-100px;bottom:-200px;width:560px;height:560px;border-radius:50%;background:#be0b5f;opacity:.9"></div>
+  <img class="abs" src="recursos/photosorter-negativo.png" alt="" style="right:70px;top:50px;height:150px;opacity:.9">
+  <div class="laptop"><div class="pantalla"><img src="recursos/photosorter-app.png" alt=""></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="photosorter/mockup-2" style="background:linear-gradient(#ece8e1,#d9d3c8)">
+  <!-- Soga -->
+  <svg class="abs" style="left:0;top:0" width="1600" height="400"><path d="M-20 150 Q800 290 1620 150" fill="none" stroke="#8c7b62" stroke-width="5"/></svg>
+  <!-- Copias colgadas -->
+  <div class="abs sombra" style="left:170px;top:232px;width:340px;height:420px;background:#fff;padding:20px 20px 70px;transform:rotate(-5deg)"><div class="broche"></div><img src="recursos/foto-1.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="abs sombra" style="left:610px;top:300px;width:380px;height:600px;background:#fff;display:flex;align-items:flex-start;justify-content:center;transform:rotate(1.5deg)"><img src="recursos/photosorter-positivo.png" alt="" style="height:560px;margin-top:-58px"></div>
+  <div class="abs sombra" style="left:1090px;top:236px;width:340px;height:420px;background:#fff;padding:20px 20px 70px;transform:rotate(6deg)"><div class="broche"></div><img src="recursos/foto-5.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+</section>
+
+<section class="escena" data-salida="photosorter/mockup-3" style="background:linear-gradient(135deg,#be0b5f,#7a0a45)">
+  <div class="navegador sombra">
+    <div class="barra"><div class="puntos"><i></i><i></i><i></i></div><div class="pestana"><img src="recursos/photosorter-icono.png" alt="">PhotoSorter</div></div>
+    <div class="url"><span>photosorter.app</span></div>
+    <div style="background:#090d16;color:#fff;height:660px;display:flex;align-items:center;padding:0 60px;gap:50px">
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:12px;font-size:22px;font-weight:600;margin-bottom:46px"><img src="recursos/photosorter-icono.png" alt="" style="width:40px;border-radius:9px">Photo<span style="color:#6195e5;margin-left:-12px">Sorter</span></div>
+        <div style="display:inline-block;font-size:13px;border:1px solid #294563;border-radius:20px;padding:5px 14px;color:#b8c2cf;margin-bottom:20px">v1.0 ya disponible para Windows y macOS</div>
+        <div style="font-size:50px;font-weight:700;line-height:1.1;letter-spacing:-1px">Organización de fotos rápida, <span style="color:#6195e5">inteligente y automática</span></div>
+        <p style="color:#b8c2cf;font-size:17px;line-height:1.55;margin:22px 0 30px">Separa, procesa y previsualiza tu biblioteca de fotos en segundos. Todo queda en tu equipo.</p>
+        <span style="display:inline-block;background:#6195e5;border-radius:10px;padding:14px 26px;font-weight:600;font-size:17px">Descargar PhotoSorter</span>
+      </div>
+      <img src="recursos/photosorter-app.png" alt="" style="width:520px;border-radius:10px;border:1px solid #294563;box-shadow:0 30px 60px rgba(0,0,0,.5)">
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOTIQUE ================= -->
+<section class="escena" data-salida="fotique/mockup-1" style="background:linear-gradient(150deg,#f4f3f9 50%,#e2dff0)">
+  <div class="abs" style="right:-140px;bottom:-180px;width:560px;height:560px;border-radius:50%;background:#ec1a5a"></div>
+  <div class="laptop"><div class="pantalla"><div style="background:#17151e;display:flex;align-items:center;justify-content:center">
+    <div style="width:330px;background:#fff;border-radius:16px;padding:34px 34px 30px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)">
+      <img src="recursos/fotique-negro.png" alt="" style="height:96px;margin:0 auto 10px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;color:#17151e;margin-bottom:24px">FOTIQUE · GESTIÓN PROFESIONAL</div>
+      <div style="height:40px;border-radius:10px;background:#f4f3f9;border:1px solid #dcd9ea;margin-bottom:12px;text-align:left;padding:10px 14px;font-size:13px;color:#8a879a">Usuario</div>
+      <div style="height:40px;border-radius:10px;background:#f4f3f9;border:1px solid #dcd9ea;margin-bottom:18px;text-align:left;padding:10px 14px;font-size:13px;color:#8a879a">Contraseña</div>
+      <div style="height:42px;border-radius:21px;background:#6d4aff;color:#fff;font-weight:700;font-size:14px;line-height:42px">Ingresar</div>
+      <div style="font-size:11px;color:#6d4aff;margin-top:14px">¿Olvidó su contraseña?</div>
+    </div>
+  </div></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="fotique/mockup-2" style="background:linear-gradient(160deg,#eceaf4,#d5d1e6)">
+  <!-- Cinta -->
+  <div class="abs" style="left:640px;top:-80px;width:64px;height:420px;background:#ec1a5a;transform:rotate(16deg);transform-origin:bottom center;box-shadow:8px 10px 16px rgba(0,0,0,.18)"></div>
+  <div class="abs" style="left:896px;top:-80px;width:64px;height:420px;background:#d0124c;transform:rotate(-16deg);transform-origin:bottom center;box-shadow:8px 10px 16px rgba(0,0,0,.18)"></div>
+  <div class="abs" style="left:765px;top:300px;width:70px;height:74px;border-radius:10px;background:linear-gradient(#d7d9de,#9a9da5)"></div>
+  <!-- Credencial -->
+  <div class="abs sombra" style="left:560px;top:352px;width:480px;height:650px;border-radius:26px;background:#17151e;color:#fff;text-align:center;overflow:hidden">
+    <div style="width:110px;height:16px;border-radius:8px;background:#eceaf4;margin:26px auto 0"></div>
+    <img src="recursos/fotique-blanco.png" alt="" style="height:230px;margin:54px auto 16px">
+    <div style="font-size:14px;font-weight:700;letter-spacing:4px">FOTIQUE · GESTIÓN PROFESIONAL</div>
+    <div class="abs" style="left:0;right:0;bottom:0;height:170px;background:#fff;color:#17151e;padding-top:30px">
+      <div style="font-size:15px;letter-spacing:5px;font-weight:700;color:#ec1a5a">FOTÓGRAFO</div>
+      <div style="font-size:42px;font-weight:700;margin-top:6px">Staff · 2026</div>
+    </div>
+  </div>
+</section>
+
+<section class="escena" data-salida="fotique/mockup-3" style="background:linear-gradient(140deg,#ec1a5a,#b80e43)">
+  <div class="tarj sombra abs" style="left:300px;top:230px;background:#17151e;transform:rotate(-8deg)"><img src="recursos/fotique-blanco.png" alt="" style="height:190px"></div>
+  <div class="tarj sombra abs" style="left:720px;top:480px;background:#fff;transform:rotate(5deg);justify-content:flex-start;padding:0 46px;gap:34px">
+    <img src="recursos/fotique-negro.png" alt="" style="height:150px">
+    <div><div style="font-size:11px;font-weight:700;letter-spacing:3px;margin-bottom:18px">FOTIQUE · GESTIÓN PROFESIONAL</div><div style="height:9px;width:210px;border-radius:5px;background:#17151e;margin-bottom:12px"></div><div style="height:6px;width:250px;border-radius:3px;background:#c9c6d6;margin-bottom:8px"></div><div style="height:6px;width:170px;border-radius:3px;background:#c9c6d6"></div></div>
+  </div>
+</section>
+
+<!-- ================= MUNAY ================= -->
+<section class="escena" data-salida="munay/mockup-1" style="background:linear-gradient(120deg,#8b75ff 0%,#b46cf0 50%,#ec5fa8 100%)">
+  <img class="abs" src="recursos/munay-blanco-transparente.png" alt="" style="left:-60px;bottom:-110px;height:520px;opacity:.28">
+  <div class="laptop"><div class="pantalla"><img src="recursos/munay-app.png" alt=""></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="munay/mockup-2" style="background:linear-gradient(150deg,#fbf6fd,#eedcf7)">
+  <!-- Bolsa -->
+  <div class="abs" style="left:470px;top:150px;width:180px;height:150px;border:14px solid #c7b299;border-bottom:0;border-radius:90px 90px 0 0"></div>
+  <div class="abs" style="left:300px;top:280px;width:520px;height:680px;background:linear-gradient(90deg,#d8c3a5,#e6d4b9 30%,#dcc8ab);box-shadow:0 40px 60px -20px rgba(80,50,120,.4)">
+    <div class="abs" style="left:0;right:0;top:0;height:70px;background:rgba(0,0,0,.07)"></div>
+    <img class="abs" src="recursos/munay-principal.png" alt="" style="left:140px;top:210px;width:240px;height:240px;border-radius:50%;box-shadow:0 6px 14px rgba(0,0,0,.2)">
+  </div>
+  <!-- Etiqueta de agradecimiento -->
+  <div class="abs sombra" style="left:900px;top:210px;width:330px;height:470px;border-radius:18px;background:#fff;transform:rotate(7deg);text-align:center;padding-top:44px;font-family:'Montserrat','Segoe UI',sans-serif">
+    <div style="width:26px;height:26px;border-radius:50%;background:#eedcf7;margin:0 auto 26px"></div>
+    <img src="recursos/munay-principal.png" alt="" style="width:120px;border-radius:28%;margin:0 auto 26px">
+    <div style="font-size:34px;font-weight:800;color:#6f55f2;line-height:1.15">¡Gracias<br>por tu compra!</div>
+    <div style="font-size:14px;color:#7b6a8e;margin-top:18px">Hecho a mano, a pedido.</div>
+  </div>
+  <!-- Stickers -->
+  <img class="abs" src="recursos/munay-principal.png" alt="" style="left:1180px;top:700px;width:170px;border-radius:50%;border:8px solid #fff;box-shadow:0 10px 20px rgba(80,50,120,.3);transform:rotate(-12deg)">
+  <div class="abs" style="left:1000px;top:760px;width:150px;height:150px;border-radius:50%;border:8px solid #fff;background:linear-gradient(120deg,#8b75ff,#ec5fa8);box-shadow:0 10px 20px rgba(80,50,120,.3);display:flex;align-items:center;justify-content:center"><img src="recursos/munay-blanco-transparente.png" alt="" style="width:130px"></div>
+</section>
+
+<section class="escena" data-salida="munay/mockup-3" style="background:linear-gradient(150deg,#f5ecfb,#f9c6e0)">
+  <div class="abs" style="left:120px;top:330px;width:470px;font-family:'Montserrat','Segoe UI',sans-serif">
+    <img src="recursos/munay-principal.png" alt="" style="width:120px;border-radius:28%;margin-bottom:30px;box-shadow:0 14px 30px rgba(111,85,242,.35)">
+    <div style="font-size:60px;font-weight:800;color:#2a1b3d;line-height:1.05">Papelería creativa</div>
+    <div style="font-size:24px;color:#6f55f2;font-weight:600;margin-top:16px">Toppers · Etiquetas · Kits escolares</div>
+  </div>
+  <div class="telefono sombra abs" style="left:880px;top:124px"><div class="vista" style="font-family:'Montserrat','Segoe UI',sans-serif">
+    <div style="background:linear-gradient(120deg,#8b75ff,#b46cf0 50%,#ec5fa8);height:170px"></div>
+    <img src="recursos/munay-principal.png" alt="" style="width:108px;border-radius:50%;border:5px solid #fff;margin:-54px auto 8px">
+    <div style="text-align:center;font-weight:800;font-size:22px;color:#2a1b3d">Munay</div>
+    <div style="text-align:center;font-size:12.5px;color:#7b6a8e;margin:2px 0 14px">Papelería creativa y personalizados</div>
+    <div style="display:flex;justify-content:center;gap:10px;margin-bottom:16px"><span style="background:linear-gradient(120deg,#8b75ff,#ec5fa8);color:#fff;font-weight:700;font-size:13px;border-radius:10px;padding:8px 26px">Seguir</span><span style="border:1px solid #e9dcf3;font-weight:700;font-size:13px;border-radius:10px;padding:8px 22px;color:#2a1b3d">Mensaje</span></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px">
+      <img src="recursos/munay-producto-1.jpg" alt="" style="width:100%;aspect-ratio:1;object-fit:cover">
+      <div style="aspect-ratio:1;background:#8b75ff;display:flex;align-items:center;justify-content:center"><img src="recursos/munay-blanco-transparente.png" alt="" style="width:92%"></div>
+      <img src="recursos/munay-producto-2.jpg" alt="" style="width:100%;aspect-ratio:1;object-fit:cover">
+      <div style="aspect-ratio:1;background:#f9c6e0;display:flex;align-items:center;justify-content:center;color:#d9488a;font-weight:800;font-size:17px;text-align:center;line-height:1.1">Vuelta<br>al cole</div>
+      <img src="recursos/munay-producto-3.jpg" alt="" style="width:100%;aspect-ratio:1;object-fit:cover">
+      <div style="aspect-ratio:1;background:linear-gradient(120deg,#8b75ff,#ec5fa8);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;text-align:center;line-height:1.1">Toppers<br>3D</div>
+      <img src="recursos/munay-producto-2.jpg" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;object-position:right bottom">
+      <div style="aspect-ratio:1;background:#f5ecfb;display:flex;align-items:center;justify-content:center"><img src="recursos/munay-positivo-transparente.png" alt="" style="width:92%"></div>
+      <img src="recursos/munay-producto-1.jpg" alt="" style="width:100%;aspect-ratio:1;object-fit:cover;object-position:left 40%">
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= MARCA PERSONAL ================= -->
+<section class="escena" data-salida="jp/mockup-1" style="background:linear-gradient(145deg,#eceae3,#d6d3c8)">
+  <div class="tarj sombra abs" style="left:270px;top:220px;background:#1e40af;transform:rotate(-9deg)"><img src="recursos/jp-blanco.svg" alt="" style="height:150px"></div>
+  <div class="tarj sombra abs" style="left:740px;top:300px;background:#ffb000;transform:rotate(8deg)"><img src="recursos/jp-azul-punto-blanco.svg" alt="" style="height:150px"></div>
+  <div class="tarj sombra abs" style="left:520px;top:560px;background:#fff;transform:rotate(-2deg);justify-content:space-between;padding:0 50px;font-family:'Poppins','Segoe UI',sans-serif">
+    <img src="recursos/jp-azul.svg" alt="" style="height:120px">
+    <div style="text-align:right;font-size:17px;font-weight:500;line-height:1.75;color:#0e1116;border-right:5px solid #ffb000;padding-right:22px">Fotografía<br>Software<br>Diseño gráfico</div>
+  </div>
+</section>
+
+<section class="escena" data-salida="jp/mockup-2" style="background:linear-gradient(#e9e7e1 0 76%,#cfcbc0 76%)">
+  <!-- Cuadro -->
+  <div class="abs" style="left:330px;top:120px;width:940px;height:640px;background:#0e1116;padding:26px;box-shadow:0 34px 44px -12px rgba(0,0,0,.45)">
+    <div style="width:100%;height:100%;background:#fff;padding:44px"><div style="position:relative;width:100%;height:100%;background:url('recursos/foto-grande.jpg') center/cover"><img class="abs" src="recursos/jp-blanco.svg" alt="" style="right:26px;bottom:24px;height:54px"></div></div>
+  </div>
+  <!-- Tarjeta apoyada -->
+  <div class="abs sombra" style="left:1130px;top:770px;width:300px;height:180px;border-radius:10px;background:#1e40af;display:flex;align-items:center;justify-content:center;transform:rotate(-4deg)"><img src="recursos/jp-blanco.svg" alt="" style="height:84px"></div>
+</section>
+
+<section class="escena" data-salida="jp/mockup-3" style="background:linear-gradient(140deg,#1e40af,#142d7c)">
+  <div class="abs" style="right:-120px;top:-140px;width:460px;height:460px;border-radius:50%;background:#ffb000"></div>
+  <div class="navegador sombra" style="font-family:'Poppins','Segoe UI',sans-serif">
+    <div class="barra"><div class="puntos"><i></i><i></i><i></i></div><div class="pestana" style="font-family:'Segoe UI',sans-serif"><img src="recursos/jp-icono-azul.svg" alt="">Portfolio</div></div>
+    <div class="url"><span style="font-family:'Segoe UI',sans-serif">portfolio</span></div>
+    <div style="height:660px;padding:26px 54px;color:#0e1116">
+      <div style="display:flex;align-items:center;gap:34px;font-size:15px;font-weight:500"><img src="recursos/jp-azul.svg" alt="" style="height:44px;margin-right:auto">Fotografía<span>Software</span><span>Diseño gráfico</span><span style="background:#ffb000;border-radius:20px;padding:8px 20px;font-weight:600">Contacto</span></div>
+      <div style="display:flex;gap:44px;align-items:center;margin-top:44px">
+        <div style="flex:1"><div style="font-size:13px;font-weight:600;letter-spacing:2.5px;color:#1e40af">FOTOGRAFÍA · SOFTWARE · DISEÑO</div>
+          <div style="font-size:54px;font-weight:700;line-height:1.08;letter-spacing:-1.5px;margin:14px 0 18px">Imágenes, código y marcas.</div>
+          <div style="display:flex;gap:12px"><span style="background:#1e40af;color:#fff;border-radius:24px;padding:12px 26px;font-weight:600;font-size:15px">Ver trabajos</span><span style="border:2px solid #0e1116;border-radius:24px;padding:10px 26px;font-weight:600;font-size:15px">Sobre mí</span></div></div>
+        <div style="width:500px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <img src="recursos/foto-1.jpg" alt="" style="width:100%;height:190px;object-fit:cover;border-radius:10px">
+          <img src="recursos/foto-5.jpg" alt="" style="width:100%;height:190px;object-fit:cover;border-radius:10px">
+          <img src="recursos/foto-2.jpg" alt="" style="width:100%;height:190px;object-fit:cover;border-radius:10px">
+          <div style="height:190px;border-radius:10px;background:#1e40af;display:flex;align-items:center;justify-content:center"><img src="recursos/jp-blanco.svg" alt="" style="height:96px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARKDOWN (software) ================= -->
+<svg width="0" height="0" style="position:absolute"><symbol id="md-icono" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="var(--fondo,#2455a4)"/><path d="M15 71V29h13l11 22 11-22h13v42H52V46L42 66h-6L26 46v25z" fill="var(--trazo,#fff)"/><path d="M78 35v30m-10-10 10 11 10-11" fill="none" stroke="var(--trazo,#fff)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+
+<section class="escena" data-salida="../software/markdown/mockup-1" style="background:linear-gradient(150deg,#f4f6fa 55%,#dbe3f2)">
+  <div class="abs" style="right:-150px;top:-190px;width:560px;height:560px;border-radius:50%;background:#2455a4"></div>
+  <div class="laptop" style="width:1300px">
+    <div class="pantalla"><div style="position:relative;background:linear-gradient(135deg,#2f66bf,#16305f);display:flex;align-items:center;justify-content:center;padding-bottom:46px">
+      <img src="recursos/markdown-app-04.png" alt="" style="border-radius:11px;box-shadow:0 26px 50px rgba(0,0,0,.4)">
+      <div class="abs" style="left:0;right:0;bottom:0;height:46px;background:rgba(10,22,46,.55);display:flex;align-items:center;justify-content:center;gap:14px">
+        <i style="width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,.28)"></i><i style="width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,.28)"></i>
+        <svg width="30" height="30" style="--fondo:#fff;--trazo:#2455a4"><use href="#md-icono"/></svg>
+        <i style="width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,.28)"></i><i style="width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,.28)"></i>
+      </div>
+    </div></div>
+    <div class="base"></div>
+  </div>
+</section>
+
+<section class="escena" data-salida="../software/markdown/mockup-2" style="background:linear-gradient(140deg,#2455a4,#16305f)">
+  <!-- Documentos de origen -->
+  <div class="abs sombra md-hoja" style="left:110px;top:250px;transform:rotate(-11deg)"><b style="background:#c8102e">PDF</b><i></i><i></i><i style="width:60%"></i><i></i><i style="width:75%"></i></div>
+  <div class="abs sombra md-hoja" style="left:190px;top:215px;transform:rotate(-5deg)"><b style="background:#d24726">P</b><i></i><i></i><i style="width:60%"></i><i></i><i style="width:75%"></i></div>
+  <div class="abs sombra md-hoja" style="left:270px;top:200px;transform:rotate(1deg)"><b style="background:#217346">X</b><i></i><i></i><i style="width:60%"></i><i></i><i style="width:75%"></i></div>
+  <div class="abs sombra md-hoja" style="left:350px;top:205px;transform:rotate(7deg)"><b style="background:#2b579a">W</b>
+    <span style="font-size:23px;font-weight:700">Informe trimestral</span><i></i><i style="width:70%"></i>
+    <span style="font-size:16px;font-weight:700;margin-top:8px">Resultados</span><i></i><i></i><i style="width:45%"></i>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:8px"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></div>
+  </div>
+  <!-- Flecha -->
+  <svg class="abs" style="left:760px;top:478px" width="110" height="110" viewBox="0 0 110 110"><circle cx="55" cy="55" r="55" fill="#fff"/><path d="M30 55h46M58 35l20 20-20 20" fill="none" stroke="#2455a4" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <!-- Resultado: el .md que generó la app -->
+  <div class="abs sombra" style="left:900px;top:200px;width:610px;height:666px;border-radius:14px;background:#0f1b33;overflow:hidden;font-family:Consolas,monospace">
+    <div style="height:50px;background:#0a1326;display:flex;align-items:flex-end;padding-left:14px"><div style="height:38px;background:#0f1b33;border-radius:8px 8px 0 0;padding:0 18px;display:flex;align-items:center;gap:10px;color:#dbe4f5;font:14px 'Segoe UI',sans-serif"><svg width="18" height="18"><use href="#md-icono"/></svg>Informe trimestral.md</div></div>
+    <pre style="margin:0;padding:24px 28px;font:inherit;font-size:15.5px;line-height:1.72;color:#c9d4ea;white-space:pre-wrap"><span class="md-t"># Informe trimestral</span>
+
+Resumen del tercer trimestre de 2026 para el
+equipo de ventas.
+
+<span class="md-t">## Resultados</span>
+
+Las ventas crecieron un 12 % respecto del
+trimestre anterior, con el mayor aporte de la
+línea de servicios.
+
+<span class="md-s">|</span> <span class="md-n">**Mes**</span> <span class="md-s">|</span> <span class="md-n">**Ventas**</span> <span class="md-s">|</span> <span class="md-n">**Variación**</span> <span class="md-s">|</span>
+<span class="md-s">|</span> Julio <span class="md-s">|</span> $ 1.240.000 <span class="md-s">|</span> +8 % <span class="md-s">|</span>
+<span class="md-s">|</span> Agosto <span class="md-s">|</span> $ 1.310.000 <span class="md-s">|</span> +6 % <span class="md-s">|</span>
+<span class="md-s">|</span> Septiembre <span class="md-s">|</span> $ 1.468.000 <span class="md-s">|</span> +12 % <span class="md-s">|</span>
+
+<span class="md-t">## Próximos pasos</span>
+
+Sumar dos vendedores a la zona norte y revisar
+la lista de precios antes de diciembre.</pre>
+  </div>
+</section>
+
+<section class="escena" data-salida="../software/markdown/mockup-3" style="background:radial-gradient(circle at 25% 30%,#1d3f7c,#0b1a36 75%)">
+  <div class="abs" style="left:90px;bottom:-40px;font-family:Consolas,monospace;font-weight:700;font-size:230px;color:#12284f;letter-spacing:-8px">.md</div>
+  <div class="abs" style="left:110px;top:170px;width:560px;color:#fff">
+    <svg class="sombra" width="230" height="230" style="border-radius:50px"><use href="#md-icono"/></svg>
+    <div style="font-size:56px;font-weight:700;line-height:1.08;letter-spacing:-1px;margin:44px 0 16px">Convertidor a Markdown</div>
+    <div style="font-size:21px;line-height:1.5;color:#b9c7e2">Word, Excel, PowerPoint, PDF e imágenes a Markdown, en un clic.</div>
+    <div class="md-chips"><span>.docx</span><span>.xlsx</span><span>.pptx</span><span>.pdf</span><span>.csv</span><span>.html</span><span>.json</span><span>.xml</span><span>.txt</span><span>.png</span><span>.jpg</span></div>
+  </div>
+  <img class="abs" src="recursos/markdown-app-05.png" alt="" style="left:770px;top:210px;border-radius:11px;box-shadow:0 40px 80px rgba(0,0,0,.55)">
+</section>
+
+<!-- ================= KAKEIBO (software) ================= -->
+<section class="escena" data-salida="../software/kakeibo/mockup-1" style="background:radial-gradient(circle at 30% 25%,#2e2b25,#141310 75%)">
+  <div class="abs" style="left:-150px;bottom:-210px;width:560px;height:560px;border-radius:50%;background:#f1aa00"></div>
+  <div class="abs" style="right:50px;top:30px;font-family:'Yu Mincho','MS Mincho',serif;font-size:210px;line-height:1.05;color:#24221d;writing-mode:vertical-rl">家計簿</div>
+  <div class="laptop" style="width:1300px"><div class="pantalla"><img src="recursos/kakeibo-app-oscuro-resumen.png" alt="" style="aspect-ratio:1924/1050"></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="../software/kakeibo/mockup-2" style="background:linear-gradient(150deg,#f9f6ee 45%,#e6dfcb)">
+  <div class="abs" style="right:-140px;top:-180px;width:520px;height:520px;border-radius:50%;background:#003c98"></div>
+  <img class="abs kk-ventana" src="recursos/kakeibo-app-claro-resumen.png" alt="" style="left:90px;top:120px;width:1010px">
+  <img class="abs kk-ventana" src="recursos/kakeibo-app-oscuro-resumen.png" alt="" style="left:500px;top:400px;width:1010px">
+  <div class="abs kk-rotulo" style="left:90px;top:700px;background:#003c98;color:#fff">Modo claro</div>
+  <div class="abs kk-rotulo" style="left:1356px;top:340px;background:#141310;color:#f1aa00">Modo oscuro</div>
+</section>
+
+<section class="escena" data-salida="../software/kakeibo/mockup-3" style="background:linear-gradient(140deg,#0a4ab5,#002a6b)">
+  <div class="abs" style="left:60px;bottom:-30px;font-family:'Yu Mincho','MS Mincho',serif;font-size:230px;color:#0b47a8;letter-spacing:10px">家計簿</div>
+  <div class="abs" style="left:100px;top:210px;width:470px;color:#fff">
+    <img src="recursos/kakeibo-iso-blanco.png" alt="" style="width:120px">
+    <div style="font-size:76px;font-weight:700;letter-spacing:-1.5px;margin:30px 0 12px">Kakeibo</div>
+    <div style="font-size:23px;line-height:1.45;color:#c6d6f3">Tu economía del hogar, en orden: pesos y dólares siempre separados.</div>
+    <div class="kk-chips"><span>Gastos fijos</span><span>Tarjetas y cuotas</span><span>Préstamos</span><span>Inversiones</span><span>Calendario</span></div>
+  </div>
+  <img class="abs kk-ventana" src="recursos/kakeibo-app-oscuro-tarjetas.png" alt="" style="left:650px;top:190px;width:1260px">
+</section>
+
+<!-- ================= FOTIQUE (software) ================= -->
+<section class="escena" data-salida="../software/fotique/mockup-1" style="background:radial-gradient(circle at 30% 25%,#262233,#0f0e14 75%)">
+  <div class="abs" style="left:-150px;bottom:-210px;width:560px;height:560px;border-radius:50%;background:#ec1a5a"></div>
+  <img class="abs" src="recursos/fotique-blanco.png" alt="" style="right:90px;top:50px;height:150px;opacity:.9">
+  <div class="laptop" style="width:1300px"><div class="pantalla"><img src="recursos/fotique-app-oscuro-resumen.png" alt="" style="aspect-ratio:1890/900"></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="../software/fotique/mockup-2" style="background:linear-gradient(150deg,#f4f3f9 45%,#dcd8ec)">
+  <div class="abs" style="right:-140px;top:-180px;width:520px;height:520px;border-radius:50%;background:#ec1a5a"></div>
+  <img class="abs kk-ventana" src="recursos/fotique-app-claro-resumen.png" alt="" style="left:90px;top:150px;width:1060px">
+  <img class="abs kk-ventana" src="recursos/fotique-app-oscuro-resumen.png" alt="" style="left:450px;top:440px;width:1060px">
+  <div class="abs kk-rotulo" style="left:90px;top:700px;background:#6b4eff;color:#fff">Modo claro</div>
+  <div class="abs kk-rotulo" style="left:1356px;top:376px;background:#17151e;color:#fff">Modo oscuro</div>
+</section>
+
+<section class="escena" data-salida="../software/fotique/mockup-3" style="background:linear-gradient(140deg,#ec1a5a,#a80c3d)">
+  <div class="abs" style="left:100px;top:190px;width:470px;color:#fff">
+    <img src="recursos/fotique-blanco.png" alt="" style="height:170px;filter:brightness(0) invert(1)">
+    <div style="font-size:76px;font-weight:700;letter-spacing:-1.5px;margin:26px 0 12px">Fotique</div>
+    <div style="font-size:23px;line-height:1.45;color:#ffd9e4">Gestión integral para estudios fotográficos, sin conexión.</div>
+    <div class="kk-chips" style="--chip:#17151e;--chip-texto:#fff"><span>Inventario</span><span>Fotógrafos</span><span>Clientes y proyectos</span><span>Calendario</span><span>Contratos</span></div>
+  </div>
+  <img class="abs kk-ventana" src="recursos/fotique-app-oscuro-proyectos.png" alt="" style="left:650px;top:230px;width:1260px">
+</section>
+
+<!-- ================= PHOTOSORTER (software) ================= -->
+<section class="escena" data-salida="../software/photosorter/mockup-1" style="background:radial-gradient(circle at 70% 20%,#16294a,#07111f 70%)">
+  <div class="abs" style="left:-150px;bottom:-210px;width:560px;height:560px;border-radius:50%;background:#be0b5f"></div>
+  <div class="laptop" style="width:1300px"><div class="pantalla"><img src="recursos/photosorter-app-03-finalizado.png" alt="" style="aspect-ratio:1860/1140"></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="../software/photosorter/mockup-2" style="background:linear-gradient(150deg,#ece8e1 45%,#d6cfc2)">
+  <div class="abs" style="right:-140px;top:-180px;width:520px;height:520px;border-radius:50%;background:#be0b5f"></div>
+  <img class="abs kk-ventana" src="recursos/photosorter-app-02-procesando.png" alt="" style="left:90px;top:90px;width:960px">
+  <img class="abs kk-ventana" src="recursos/photosorter-app-04-vertical.png" alt="" style="left:550px;top:390px;width:960px">
+  <div class="abs kk-rotulo" style="left:90px;top:710px;background:#6195e5;color:#07111f">Mientras procesa</div>
+  <div class="abs kk-rotulo" style="left:1250px;top:326px;background:#07111f;color:#fff">Fotos ya separadas</div>
+</section>
+
+<section class="escena" data-salida="../software/photosorter/mockup-3" style="background:linear-gradient(135deg,#be0b5f,#6d083d)">
+  <div class="abs" style="left:100px;top:190px;width:480px;color:#fff">
+    <img src="recursos/photosorter-icono.png" alt="" style="width:150px;border-radius:34px;box-shadow:0 20px 40px rgba(0,0,0,.35)">
+    <div style="font-size:70px;font-weight:700;letter-spacing:-1.5px;margin:30px 0 12px">PhotoSorter</div>
+    <div style="font-size:23px;line-height:1.45;color:#ffd3e8">Separa tus fotos por orientación, sin tocar los originales.</div>
+    <div class="kk-chips" style="--chip:#07111f;--chip-texto:#fff"><span>Verticales</span><span>Horizontales</span><span>Cuadradas</span><span>JPG · PNG · TIFF · WebP</span><span>RAW</span></div>
+  </div>
+  <img class="abs kk-ventana" src="recursos/photosorter-app-03-finalizado.png" alt="" style="left:660px;top:170px;width:1180px">
+</section>
+
+<!-- ================= MUNAY (software) ================= -->
+<section class="escena" data-salida="../software/munay/mockup-1" style="background:linear-gradient(150deg,#fbf6fd 45%,#ecd9f6)">
+  <div class="abs" style="right:-150px;top:-200px;width:560px;height:560px;border-radius:50%;background:linear-gradient(135deg,#8b75ff,#ec5fa8)"></div>
+  <div class="laptop" style="width:1300px"><div class="pantalla"><img src="recursos/munay-app-claro-cotizar.png" alt="" style="aspect-ratio:1896/1172"></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="../software/munay/mockup-2" style="background:linear-gradient(120deg,#8b75ff 0%,#b46cf0 50%,#ec5fa8 100%)">
+  <img class="abs kk-ventana" src="recursos/munay-app-claro-cotizar.png" alt="" style="left:90px;top:90px;width:960px">
+  <img class="abs kk-ventana" src="recursos/munay-app-oscuro-cotizar.png" alt="" style="left:550px;top:390px;width:960px">
+  <div class="abs kk-rotulo" style="left:90px;top:716px;background:#fff;color:#6a4fe0">Modo claro</div>
+  <div class="abs kk-rotulo" style="left:1356px;top:326px;background:#150f1f;color:#fff">Modo oscuro</div>
+</section>
+
+<section class="escena" data-salida="../software/munay/mockup-3" style="background:linear-gradient(150deg,#fbf6fd,#f4d3ea)">
+  <div class="abs" style="left:90px;top:170px;width:480px;color:#2a1f3d">
+    <img src="recursos/munay-positivo-transparente.png" alt="" style="width:190px;margin:-20px 0 -10px -30px">
+    <div style="font-size:66px;font-weight:700;letter-spacing:-1.5px;line-height:1.05;margin:20px 0 14px">Munay Cotizador</div>
+    <div style="font-size:23px;line-height:1.45;color:#6b5a85">El precio justo de cada producto: insumos, costos y margen.</div>
+    <div class="kk-chips" style="--chip:#8b75ff;--chip-texto:#fff"><span>Cotizar</span><span>Insumos y stock</span><span>Productos</span><span>Ventas</span><span>Pedidos</span></div>
+  </div>
+  <img class="abs kk-ventana" src="recursos/munay-app-claro-ventas.png" alt="" style="left:650px;top:190px;width:1180px">
+</section>
+
+<!-- ================= CATALOGOYA (software) ================= -->
+<section class="escena" data-salida="../software/catalogoya/mockup-1" style="background:linear-gradient(150deg,#fff9fc 45%,#fce7ef)">
+  <div class="abs" style="right:-150px;top:-200px;width:580px;height:580px;border-radius:50%;background:#a98ad4"></div>
+  <div class="abs" style="left:-120px;bottom:-180px;width:420px;height:420px;border-radius:50%;background:#f4b8cc"></div>
+  <div class="abs telefono tl-sombra" style="left:300px;top:170px;transform:rotate(-8deg) scale(.9)"><div class="vista"><img src="recursos/catalogoya-02-pedidos.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:1000px;top:170px;transform:rotate(8deg) scale(.9)"><div class="vista"><img src="recursos/catalogoya-04-productos.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:600px;top:120px"><div class="vista"><img src="recursos/catalogoya-01-inicio.png" alt=""></div></div>
+</section>
+
+<section class="escena" data-salida="../software/catalogoya/mockup-2" style="background:linear-gradient(120deg,#d8c8f0,#f4b8cc)">
+  <div class="abs telefono tl-sombra" style="left:330px;top:124px"><div class="vista"><img src="recursos/catalogoya-02-pedidos.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:870px;top:124px"><div class="vista"><img src="recursos/catalogoya-03-pedido.png" alt=""></div></div>
+  <div class="abs kk-rotulo" style="left:250px;top:820px;background:#6e4f9c;color:#fff">Pedidos y cobros</div>
+  <div class="abs kk-rotulo" style="left:1180px;top:200px;background:#fff;color:#9e3d63">Detalle del pedido</div>
+</section>
+
+<section class="escena" data-salida="../software/catalogoya/mockup-3" style="background:linear-gradient(150deg,#fff9fc,#fce7ef)">
+  <div class="abs" style="left:100px;top:200px;width:620px;color:#332b3a">
+    <div style="width:150px;height:150px;border-radius:36px;background:#fce7ef;box-shadow:0 20px 40px rgba(110,79,156,.25)"><svg viewBox="18 18 72 72" width="150" height="150"><path fill="#A98AD4" d="M30,38 C38,34 46,34 53,38 L53,74 C46,70 38,70 30,74 Z"/><path fill="#F4B8CC" d="M55,38 C62,34 70,34 78,38 L78,74 C70,70 62,70 55,74 Z"/><path fill="#fff" d="M60,46 L73,46 L73,49 L60,49 Z M60,53 L73,53 L73,56 L60,56 Z M60,60 L69,60 L69,63 L60,63 Z"/><path fill="#fff" d="M36,51 L39,48 L42,52 L47,45 L50,48 L43,58 Z"/></svg></div>
+    <div style="font-size:76px;font-weight:700;letter-spacing:-1.5px;margin:30px 0 12px">CatalogoYa</div>
+    <div style="font-size:23px;line-height:1.45;color:#6d6474;max-width:520px">Las ventas por catálogo de todas tus empresas, en un solo lugar.</div>
+    <div class="kk-chips" style="--chip:#6e4f9c;--chip-texto:#fff"><span>Empresas y campañas</span><span>Clientes</span><span>Pedidos y pagos</span><span>Stock</span><span>Catálogos PDF</span><span>Calendario</span></div>
+  </div>
+  <div class="abs" style="right:-120px;bottom:-160px;width:640px;height:640px;border-radius:50%;background:#a98ad4"></div>
+  <div class="abs telefono tl-sombra" style="left:1040px;top:124px"><div class="vista"><img src="recursos/catalogoya-06-calendario.png" alt=""></div></div>
+</section>
+
+<!-- ================= TRANSCRIPTOR (software) ================= -->
+<section class="escena" data-salida="../software/transcriptor/mockup-1" style="background:radial-gradient(circle at 30% 25%,#13807f,#073c3c 75%)">
+  <div class="abs" style="right:-150px;top:-200px;width:560px;height:560px;border-radius:50%;background:#ffd166"></div>
+  <svg class="abs" style="left:80px;bottom:60px;opacity:.16" width="520" height="220" viewBox="0 0 520 220"><g fill="#fff"><rect x="0" y="80" width="26" height="60" rx="13"/><rect x="50" y="30" width="26" height="160" rx="13"/><rect x="100" y="60" width="26" height="100" rx="13"/><rect x="150" y="0" width="26" height="220" rx="13"/><rect x="200" y="50" width="26" height="120" rx="13"/><rect x="250" y="90" width="26" height="40" rx="13"/></g><g fill="#ffd166"><rect x="320" y="60" width="200" height="26" rx="13"/><rect x="320" y="110" width="200" height="26" rx="13"/><rect x="320" y="160" width="130" height="26" rx="13"/></g></svg>
+  <div class="abs telefono tl-sombra" style="left:300px;top:170px;transform:rotate(-8deg) scale(.9)"><div class="vista"><img src="recursos/transcriptor-03-motor.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:1000px;top:170px;transform:rotate(8deg) scale(.9)"><div class="vista"><img src="recursos/transcriptor-01-inicio.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:600px;top:120px"><div class="vista"><img src="recursos/transcriptor-02-transcripcion.png" alt=""></div></div>
+</section>
+
+<section class="escena" data-salida="../software/transcriptor/mockup-2" style="background:linear-gradient(150deg,#eef7f6 45%,#cfe6e4)">
+  <div class="abs" style="right:-140px;top:-180px;width:520px;height:520px;border-radius:50%;background:#0f6e6e"></div>
+  <div class="abs telefono tl-sombra" style="left:330px;top:124px"><div class="vista"><img src="recursos/transcriptor-01-inicio.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:870px;top:124px"><div class="vista"><img src="recursos/transcriptor-02-transcripcion.png" alt=""></div></div>
+  <div class="abs kk-rotulo" style="left:220px;top:820px;background:#0f6e6e;color:#fff">Tus transcripciones</div>
+  <div class="abs kk-rotulo" style="left:1180px;top:240px;background:#ffd166;color:#073c3c">Texto con marcas de tiempo</div>
+</section>
+
+<section class="escena" data-salida="../software/transcriptor/mockup-3" style="background:linear-gradient(140deg,#0f6e6e,#063737)">
+  <div class="abs" style="left:100px;top:200px;width:620px;color:#fff">
+    <div style="width:150px;height:150px;border-radius:36px;background:#0f6e6e;box-shadow:0 20px 40px rgba(0,0,0,.35),inset 0 0 0 2px rgba(255,255,255,.12)"><svg viewBox="18 18 72 72" width="150" height="150"><g fill="#fff"><path d="M31,47h4a2,2 0 0 1 2,2v10a2,2 0 0 1 -2,2h-4a2,2 0 0 1 -2,-2V49a2,2 0 0 1 2,-2z"/><path d="M41,38h4a2,2 0 0 1 2,2v28a2,2 0 0 1 -2,2h-4a2,2 0 0 1 -2,-2V40a2,2 0 0 1 2,-2z"/><path d="M51,43h4a2,2 0 0 1 2,2v18a2,2 0 0 1 -2,2h-4a2,2 0 0 1 -2,-2V45a2,2 0 0 1 2,-2z"/></g><g fill="#FFD166"><path d="M63,41h14a2,2 0 0 1 0,6H63a2,2 0 0 1 0,-6z"/><path d="M63,51h14a2,2 0 0 1 0,6H63a2,2 0 0 1 0,-6z"/><path d="M63,61h9a2,2 0 0 1 0,6H63a2,2 0 0 1 0,-6z"/></g></svg></div>
+    <div style="font-size:76px;font-weight:700;letter-spacing:-1.5px;margin:30px 0 12px">Transcriptor</div>
+    <div style="font-size:23px;line-height:1.45;color:#b3ebe9;max-width:520px">Audio a texto en español, dentro del teléfono: sin cuentas ni servidores.</div>
+    <div class="kk-chips" style="--chip:#ffd166;--chip-texto:#073c3c"><span>Sin conexión</span><span>Whisper</span><span>Transcribir en vivo</span><span>MP3 · M4A · WAV · OGG</span><span>Audios de WhatsApp</span></div>
+  </div>
+  <div class="abs telefono tl-sombra" style="left:1040px;top:124px"><div class="vista"><img src="recursos/transcriptor-03-motor.png" alt=""></div></div>
+</section>
+
+<!-- ================= RECIBAPP (software) ================= -->
+<section class="escena" data-salida="../software/recibapp/mockup-1" style="background:linear-gradient(150deg,#f4f7fc 50%,#d9e6f8)">
+  <div class="abs" style="right:-150px;top:-200px;width:560px;height:560px;border-radius:50%;background:#2a78d6"></div>
+  <div class="abs" style="left:-120px;bottom:-170px;width:400px;height:400px;border-radius:50%;background:#eb6834"></div>
+  <div class="laptop" style="width:1300px"><div class="pantalla"><img src="recursos/recibapp-escritorio-1-resumen.png" alt="" style="aspect-ratio:1280/800"></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="../software/recibapp/mockup-2" style="background:linear-gradient(140deg,#2a78d6,#123d7a)">
+  <img class="abs kk-ventana" src="recursos/recibapp-escritorio-3-comparar.png" alt="" style="left:90px;top:150px;width:1060px">
+  <div class="abs telefono tl-sombra" style="left:1110px;top:150px;transform:scale(.92);transform-origin:top left"><div class="vista" style="background:#121316"><img src="recursos/recibapp-telefono-1-resumen.png" alt="" style="margin-top:22px"></div></div>
+  <div class="abs kk-rotulo" style="left:90px;top:84px;background:#fff;color:#2a78d6">En la computadora</div>
+  <div class="abs kk-rotulo" style="left:1190px;top:940px;background:#eb6834;color:#fff">Y en el celular</div>
+</section>
+
+<section class="escena" data-salida="../software/recibapp/mockup-3" style="background:linear-gradient(150deg,#f4f7fc,#d9e6f8)">
+  <div class="abs" style="left:100px;top:190px;width:540px;color:#16243a">
+    <div style="width:150px;height:150px;border-radius:36px;background:#2a78d6;box-shadow:0 20px 40px rgba(42,120,214,.35);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 64 64" width="92" height="92"><path fill="#fff" d="M14 6h36v52l-6-4-6 4-6-4-6 4-6-4-6 4z"/><g fill="#2a78d6"><rect x="21" y="16" width="22" height="4" rx="2"/><rect x="21" y="25" width="16" height="4" rx="2"/><rect x="21" y="34" width="22" height="4" rx="2"/></g><rect x="33" y="43" width="10" height="5" rx="2" fill="#eb6834"/></svg></div>
+    <div style="font-size:76px;font-weight:700;letter-spacing:-1.5px;margin:30px 0 12px">Recibapp</div>
+    <div style="font-size:23px;line-height:1.45;color:#4d5d75">Tu recibo de sueldo, explicado: qué cobrás, qué te descuentan y cómo cambia mes a mes.</div>
+    <div class="kk-chips" style="--chip:#2a78d6;--chip-texto:#fff"><span>Lectura de PDF</span><span>Comparar meses</span><span>100 % sin conexión</span><span>Windows · macOS · Linux</span><span>Android · iOS</span></div>
+  </div>
+  <img class="abs kk-ventana" src="recursos/recibapp-escritorio-2-recibos.png" alt="" style="left:700px;top:170px;width:1120px">
+  <div class="abs telefono tl-sombra" style="left:1110px;top:300px;transform:scale(.85);transform-origin:top left"><div class="vista" style="background:#121316"><img src="recursos/recibapp-telefono-2-recibos.png" alt="" style="margin-top:22px"></div></div>
+</section>
+
+<!-- ================= AUTOCONTROL (software) ================= -->
+<section class="escena" data-salida="../software/autocontrol/mockup-1" style="background:radial-gradient(circle at 70% 20%,#1b2d57,#0a1428 70%)">
+  <div class="abs" style="left:-150px;bottom:-210px;width:560px;height:560px;border-radius:50%;background:#e5473d"></div>
+  <img class="abs" src="recursos/autocontrol-logo.png" alt="" style="right:80px;top:60px;width:130px;border-radius:30px">
+  <div class="abs telefono tl-sombra" style="left:300px;top:170px;transform:rotate(-8deg) scale(.9)"><div class="vista"><img src="recursos/autocontrol-02-service.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:1000px;top:170px;transform:rotate(8deg) scale(.9)"><div class="vista"><img src="recursos/autocontrol-04-papeles.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:600px;top:120px"><div class="vista"><img src="recursos/autocontrol-01-resumen.png" alt=""></div></div>
+</section>
+
+<section class="escena" data-salida="../software/autocontrol/mockup-2" style="background:linear-gradient(150deg,#f5f2ea 45%,#e2dccd)">
+  <div class="abs" style="right:-140px;top:-180px;width:520px;height:520px;border-radius:50%;background:#4b2fbd"></div>
+  <div class="abs telefono tl-sombra" style="left:330px;top:124px"><div class="vista"><img src="recursos/autocontrol-02-service.png" alt=""></div></div>
+  <div class="abs telefono tl-sombra" style="left:870px;top:124px"><div class="vista"><img src="recursos/autocontrol-03-combustible.png" alt=""></div></div>
+  <div class="abs kk-rotulo" style="left:230px;top:820px;background:#4b2fbd;color:#fff">Service al día</div>
+  <div class="abs kk-rotulo" style="left:1180px;top:240px;background:#0e1a33;color:#fff">Cargas de combustible</div>
+</section>
+
+<section class="escena" data-salida="../software/autocontrol/mockup-3" style="background:linear-gradient(140deg,#16295a,#0a1428)">
+  <div class="abs" style="left:100px;top:190px;width:620px;color:#fff">
+    <img src="recursos/autocontrol-logo.png" alt="" style="width:150px;border-radius:36px;box-shadow:0 20px 40px rgba(0,0,0,.4)">
+    <div style="font-size:76px;font-weight:700;letter-spacing:-1.5px;margin:30px 0 12px">AutoControl</div>
+    <div style="font-size:23px;line-height:1.45;color:#b9c8ea;max-width:540px">Todos los controles del auto en el celular: kilómetros, service, papeles y gastos.</div>
+    <div class="kk-chips" style="--chip:#e5473d;--chip-texto:#fff"><span>Kilometraje</span><span>Service</span><span>Papeles y vencimientos</span><span>Combustible</span><span>GPS y mapa</span></div>
+  </div>
+  <div class="abs telefono tl-sombra" style="left:1040px;top:124px"><div class="vista"><img src="recursos/autocontrol-04-papeles.png" alt=""></div></div>
+</section>
+
+<!-- ================= FLASHED (software) ================= -->
+<section class="escena" data-salida="../software/flashed/mockup-1" style="background:#0b0d1c url(recursos/flashed-fondo.png) center/cover">
+  <div class="abs" style="inset:0;background:rgba(8,9,22,.55)"></div>
+  <div class="laptop" style="width:1300px;position:relative"><div class="pantalla"><img src="recursos/flashed-4-discoteca.png" alt="" style="aspect-ratio:16/9"></div><div class="base"></div></div>
+</section>
+
+<section class="escena" data-salida="../software/flashed/mockup-2" style="background:linear-gradient(135deg,#ff2fa3,#5b1fd1 60%,#1a0f4a)">
+  <img class="abs kk-ventana" src="recursos/flashed-3-quince.png" alt="" style="left:90px;top:110px;width:1000px">
+  <img class="abs kk-ventana" src="recursos/flashed-5-jefe.png" alt="" style="left:510px;top:420px;width:1000px">
+  <div class="abs kk-rotulo" style="left:90px;top:700px;background:#ffd23f;color:#1a0f4a">Fiesta de 15</div>
+  <div class="abs kk-rotulo" style="left:1330px;top:356px;background:#0b0d1c;color:#ff7ac8">Jefe final: el DJ</div>
+</section>
+
+<section class="escena" data-salida="../software/flashed/mockup-3" style="background:#0b0d1c url(recursos/flashed-fondo.png) center/cover">
+  <div class="abs" style="inset:0;background:linear-gradient(90deg,rgba(8,9,22,.92) 35%,rgba(8,9,22,.25))"></div>
+  <div class="abs" style="left:100px;top:200px;width:620px;color:#fff">
+    <div class="fl-titulo">FLASHED</div>
+    <div style="font-size:23px;line-height:1.45;color:#ffb36b;font-weight:700;font-style:italic;margin-top:18px">¡Que los láseres no te quemen el sensor!</div>
+    <div style="font-size:21px;line-height:1.45;color:#c9cbe0;margin-top:14px;max-width:540px">Juego arcade de navegador: sacá las fotos del evento esquivando invitados y láseres.</div>
+    <div class="kk-chips" style="--chip:#ff2fa3;--chip-texto:#fff"><span>7 eventos</span><span>Jefe final</span><span>Accesorios</span><span>Computadora y celular</span><span>TypeScript · Phaser 3</span></div>
+  </div>
+  <img class="abs" src="recursos/flashed-fotografo.png" alt="" style="left:800px;top:250px;height:720px;filter:drop-shadow(0 30px 30px rgba(0,0,0,.5))">
+  <img class="abs" src="recursos/flashed-flash.png" alt="" style="left:1110px;top:200px;width:230px">
+  <img class="abs" src="recursos/flashed-dj.png" alt="" style="left:1240px;top:470px;height:500px;filter:drop-shadow(0 30px 30px rgba(0,0,0,.5))">
+</section>
+
+<style>
+  .tl-sombra { filter: drop-shadow(0 40px 40px rgba(0,0,0,.35)); }
+  .telefono .vista img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .fl-titulo { font: italic 900 128px/1 "Arial Black", "Segoe UI", sans-serif; letter-spacing: -3px; color: #fff; -webkit-text-stroke: 6px #0b0d1c; paint-order: stroke fill; text-shadow: 8px 8px 0 #0b0d1c; }
+  .kk-ventana { border-radius: 12px; box-shadow: 0 40px 80px -10px rgba(0,0,0,.5), 0 0 0 1px rgba(0,0,0,.25); }
+  .kk-rotulo { font-size: 20px; font-weight: 600; border-radius: 24px; padding: 9px 22px; box-shadow: 0 10px 20px rgba(0,0,0,.2); }
+  .kk-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+  .kk-chips span { font-size: 17px; font-weight: 600; color: var(--chip-texto, #141310); background: var(--chip, #f1aa00); border-radius: 20px; padding: 7px 16px; }
+  .md-hoja { width: 360px; height: 470px; border-radius: 8px; background: #fff; padding: 34px 32px; display: flex; flex-direction: column; gap: 13px; color: #1e2530; }
+  .md-hoja b { align-self: flex-start; min-width: 54px; height: 54px; padding: 0 12px; border-radius: 10px; color: #fff; font-size: 26px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+  .md-hoja i { height: 9px; border-radius: 5px; background: #dfe4ec; }
+  .md-hoja u { height: 20px; background: #e6ebf3; }
+  .md-hoja u:nth-child(-n+3) { background: #c5d0e3; }
+  .md-t { color: #7fb0ff; font-weight: 700; } .md-s { color: #55678c; } .md-n { color: #f2c66d; }
+  .md-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 34px; }
+  .md-chips span { font: 600 16px Consolas, monospace; color: #dbe4f5; border: 1px solid #35518a; border-radius: 8px; padding: 6px 12px; }
+</style>
+
+</body>
+</html>

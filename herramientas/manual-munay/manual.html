@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Munay — Manual de marca</title>
+<style>
+  @page { size: 297mm 210mm; margin: 0; }
+
+  :root {
+    --violeta: #8b75ff;
+    --violeta-fuerte: #6f55f2;
+    --rosa: #ec5fa8;
+    --degrade: linear-gradient(120deg, #8b75ff 0%, #b46cf0 50%, #ec5fa8 100%);
+    --fondo: #fbf6fd;
+    --superficie-2: #f5ecfb;
+    --texto: #2a1b3d;
+    --tenue: #7b6a8e;
+    --borde: #e9dcf3;
+    --noche: #150f1f;
+    --noche-2: #20172e;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Montserrat", "Segoe UI", sans-serif; font-size: 10pt; line-height: 1.5; color: var(--texto); counter-reset: pagina; }
+  img { display: block; }
+  p { margin: 0 0 2.5mm; }
+  b, strong { font-weight: 700; }
+
+  .pagina {
+    position: relative; width: 297mm; height: 210mm; padding: 17mm 20mm 16mm;
+    background: var(--fondo); overflow: hidden;
+    page-break-after: always; break-after: page; counter-increment: pagina;
+  }
+  .pagina:last-child { page-break-after: auto; break-after: auto; }
+  .pagina.oscura { background: var(--noche); color: #f3eafb; }
+  .pagina.oscura .gris, .pagina.oscura .pie, .pagina.oscura .bajada { color: #ab9bbf; }
+  .pagina.degrade { background: var(--degrade); color: #fff; }
+
+  .seccion { font-size: 7.5pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rosa); margin-bottom: 3mm; }
+  h1 { font-size: 29pt; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 4mm; }
+  h2 { font-size: 11pt; font-weight: 700; margin: 0 0 1.5mm; }
+  .bajada { max-width: 195mm; color: var(--tenue); font-size: 11pt; margin-bottom: 7mm; }
+  .gris { color: var(--tenue); }
+  .chico { font-size: 8.5pt; }
+
+  .pie { position: absolute; left: 20mm; right: 20mm; bottom: 9mm; display: flex; justify-content: space-between; font-size: 7pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tenue); }
+  .pie::after { content: counter(pagina, decimal-leading-zero); }
+
+  .fila { display: flex; gap: 8mm; }
+  .col { flex: 1; min-width: 0; }
+  .lienzo { display: flex; align-items: center; justify-content: center; border-radius: 5mm; }
+  .lienzo.blanco { background: #fff; border: 0.3mm solid var(--borde); }
+  .lienzo.lila { background: var(--superficie-2); border: 0.3mm solid var(--borde); }
+  .lienzo.noche { background: var(--noche); }
+  .lienzo.grad { background: var(--degrade); }
+  .bloque { margin-bottom: 6mm; }
+  .redondo { border-radius: 28%; }
+
+  /* Portada */
+  .portada { display: flex; align-items: center; padding: 0 24mm; gap: 20mm; }
+  .portada h1 { font-size: 64pt; margin: 3mm 0 5mm; }
+  .portada .seccion { color: #fff; opacity: .85; }
+  .portada .lema { font-size: 14pt; max-width: 120mm; opacity: .95; }
+  .portada .version { position: absolute; left: 24mm; right: 24mm; bottom: 14mm; font-size: 7.5pt; font-weight: 700; letter-spacing: 0.14em; border-top: 0.3mm solid rgba(255,255,255,.45); padding-top: 4mm; display: flex; justify-content: space-between; }
+
+  /* Construcción */
+  .plano { position: relative; width: 112mm; height: 112mm; }
+  .plano img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .plano .reticula { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(255,255,255,.4) 0.2mm, transparent 0.2mm), linear-gradient(to bottom, rgba(255,255,255,.4) 0.2mm, transparent 0.2mm); background-size: 11.2mm 11.2mm; }
+  .plano .caja { position: absolute; border: 0.35mm dashed #fff; }
+  .cota { position: absolute; font-size: 7pt; font-weight: 700; color: var(--violeta-fuerte); white-space: nowrap; display: flex; align-items: center; justify-content: center; }
+  .cota.h { height: 3mm; border-left: 0.25mm solid currentColor; border-right: 0.25mm solid currentColor; }
+  .cota.h::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 0.25mm solid currentColor; }
+  .cota.v { width: 3mm; border-top: 0.25mm solid currentColor; border-bottom: 0.25mm solid currentColor; }
+  .cota.v::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; border-left: 0.25mm solid currentColor; }
+  .cota span { position: relative; background: var(--fondo); padding: 0 1mm; }
+  .cota.v span { writing-mode: vertical-rl; transform: rotate(180deg); padding: 1mm 0; }
+
+  table.medidas, table.escala { border-collapse: collapse; width: 100%; }
+  table.medidas td { padding: 2mm 0; border-bottom: 0.25mm solid var(--borde); vertical-align: top; }
+  table.medidas td:last-child { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 4mm; }
+  table.escala td { padding: 2.2mm 0; border-bottom: 0.25mm solid var(--borde); vertical-align: baseline; }
+  table.escala td:last-child { text-align: right; font-size: 7.5pt; color: var(--tenue); white-space: nowrap; padding-left: 3mm; }
+
+  /* Color */
+  .muestras { display: grid; gap: 5mm; }
+  .muestra { background: #fff; border: 0.3mm solid var(--borde); border-radius: 3.5mm; overflow: hidden; }
+  .muestra .tono { height: 24mm; }
+  .muestra.baja .tono { height: 12mm; }
+  .muestra .dato { padding: 2.5mm 3mm 3mm; font-size: 7.2pt; line-height: 1.4; color: var(--tenue); }
+  .muestra .dato b { display: block; font-size: 9pt; color: var(--texto); }
+
+  .aa { font-size: 58pt; font-weight: 800; line-height: 1; letter-spacing: -0.03em; }
+  .abc { font-size: 10.5pt; line-height: 1.55; margin: 0; }
+
+  /* Componentes de interfaz */
+  .ui { background: var(--fondo); border: 0.3mm solid var(--borde); border-radius: 5mm; padding: 6mm; font-family: "Segoe UI", sans-serif; font-size: 9pt; }
+  .ui .tarjeta { background: #fff; border: 0.3mm solid var(--borde); border-radius: 4mm; padding: 4.5mm; box-shadow: 0 1.5mm 6mm rgba(111,85,242,.10); }
+  .paso { background: var(--degrade); color: #fff; width: 6mm; height: 6mm; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 8pt; font-weight: 700; margin-right: 2mm; }
+  .b { display: inline-block; white-space: nowrap; font-weight: 600; border-radius: 2.6mm; padding: 2mm 3.8mm; border: 0.3mm solid var(--borde); background: #fff; }
+  .b.primario { background: var(--degrade); color: #fff; border-color: transparent; }
+  .b.sobre { border-color: var(--violeta); color: var(--violeta-fuerte); }
+  .campo { border: 0.3mm solid var(--borde); background: var(--superficie-2); border-radius: 2.6mm; padding: 2mm 2.8mm; color: var(--tenue); }
+  .chip { display: inline-block; white-space: nowrap; font-size: 7.5pt; font-weight: 600; padding: 0.6mm 2.4mm; border-radius: 99mm; background: var(--superficie-2); color: var(--violeta-fuerte); }
+  .precio { background: var(--degrade); color: #fff; border-radius: 4mm; padding: 3.5mm 4.5mm; }
+  .cabecera { background: var(--degrade); color: #fff; display: flex; align-items: center; gap: 3mm; padding: 2.6mm 5mm; border-radius: 3mm; font-family: "Segoe UI", sans-serif; }
+  .cabecera img { width: 10mm; height: 10mm; border-radius: 28%; box-shadow: 0 0.5mm 2mm rgba(0,0,0,.2); }
+  .cabecera .nombre { font-weight: 700; font-size: 12pt; line-height: 1.15; }
+  .cabecera .nombre small { display: block; font-weight: 400; font-size: 7.5pt; opacity: .85; }
+  .cabecera .tab { white-space: nowrap; font-weight: 600; font-size: 9pt; padding: 1.6mm 4mm; border-radius: 99mm; opacity: .85; }
+  .cabecera .tab.activo { background: #fff; color: var(--violeta-fuerte); opacity: 1; }
+
+  /* Usos incorrectos */
+  .errores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm 8mm; }
+  .errores .lienzo { position: relative; height: 54mm; overflow: hidden; }
+  .errores .lienzo::after { content: "✕"; position: absolute; top: 2.5mm; right: 4mm; color: #d9488a; font-size: 11pt; font-weight: 700; }
+  .errores img { height: 38mm; }
+  .errores p { margin: 2mm 0 0; font-size: 9.5pt; }
+</style>
+</head>
+<body>
+
+<!-- Portada -->
+<section class="pagina degrade portada">
+  <img src="logos/blanco-transparente.png" alt="Logo de Munay" style="height:128mm;margin-left:-14mm">
+  <div>
+    <div class="seccion">Manual de marca · v1.0</div>
+    <h1>Munay</h1>
+    <p class="lema">Logo, color, tipografía y uso de la marca en las piezas y en la aplicación.</p>
+  </div>
+  <div class="version"><span>VERSIÓN 1.0 · OCTUBRE 2026</span><span>PAPELERÍA CREATIVA Y PERSONALIZADOS</span></div>
+</section>
+
+<!-- 01 La marca -->
+<section class="pagina">
+  <div class="seccion">01 · La marca</div>
+  <h1>Una M con relieve.</h1>
+  <p class="bajada">El logo de Munay es su inicial: una «M» blanca, de curvas amplias, apoyada sobre un cuadrado violeta. Una sombra corrida le da volumen, como las capas de papel de un topper.</p>
+  <div class="fila">
+    <div class="lienzo lila" style="width:100mm;height:122mm;flex:none"><img src="logos/principal.png" alt="" style="height:84mm"></div>
+    <div class="col">
+      <div class="bloque"><h2>La letra</h2><p>Una «M» mayúscula con serifas y mucho contraste entre trazos gruesos y finos. Los trazos interiores se curvan y se unen en un vértice bajo. Siempre va en blanco.</p></div>
+      <div class="bloque"><h2>La sombra</h2><p>Una copia de la letra en violeta oscuro, corrida apenas hacia la derecha y hacia abajo. No es un efecto: forma parte del dibujo y no se quita ni se cambia de lado.</p></div>
+      <div class="bloque"><h2>El fondo</h2><p>Un cuadrado en violeta Munay. En pantalla puede llevar las esquinas redondeadas; en impresos va con esquinas rectas o redondeadas según la pieza.</p></div>
+    </div>
+    <div class="col">
+      <div class="bloque"><h2>El nombre</h2><p>Se escribe <b>Munay</b>, con mayúscula inicial. En quechua, <i>munay</i> es «querer», «amar». El logo no incluye el nombre: cuando hace falta, va escrito al lado.</p></div>
+      <div class="bloque"><h2>Qué hace Munay</h2><p>Papelería creativa y personalizados: toppers 3D para torta, etiquetas y kits escolares, hechos a pedido con el nombre y la temática de cada cliente.</p></div>
+      <div class="bloque"><h2>Carácter</h2><p>Alegre, artesanal y prolija. Colores vivos y formas redondeadas, con el violeta y el rosa como protagonistas.</p></div>
+    </div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 02 Construcción -->
+<section class="pagina">
+  <div class="seccion">02 · Construcción</div>
+  <h1>Un cuadrado, una letra centrada.</h1>
+  <p class="bajada" style="margin-bottom:6mm">La retícula divide el lado del cuadrado en diez partes. La unidad <b>x</b> es una décima del lado.</p>
+  <div class="fila" style="gap:20mm">
+    <div style="position:relative;width:128mm;height:124mm;flex:none">
+      <div class="plano" style="position:absolute;left:10mm;top:8mm">
+        <img src="logos/principal.png" alt="">
+        <div class="reticula"></div>
+        <div class="caja" style="left:18.1%;top:17.5%;width:63.2%;height:62.4%"></div>
+        <div class="cota h" style="left:0;width:112mm;top:-7mm"><span>10 x</span></div>
+        <div class="cota h" style="left:20.3mm;width:70.8mm;top:115mm"><span>6,3 x</span></div>
+        <div class="cota v" style="left:-8mm;top:0;height:112mm"><span>10 x</span></div>
+        <div class="cota v" style="left:115mm;top:19.6mm;height:69.9mm"><span>6,2 x</span></div>
+      </div>
+    </div>
+    <div class="col" style="padding-top:2mm">
+      <h2>Medidas</h2>
+      <table class="medidas">
+        <tr><td>Lado del cuadrado</td><td>10 x</td></tr>
+        <tr><td>Ancho de la letra</td><td>6,3 x</td></tr>
+        <tr><td>Alto de la letra</td><td>6,2 x</td></tr>
+        <tr><td>Margen a cada costado y arriba</td><td>1,8 x</td></tr>
+        <tr><td>Margen abajo, donde cae la sombra</td><td>2 x</td></tr>
+        <tr><td>Corrimiento de la sombra, a la derecha y abajo</td><td>0,12 x · 0,06 x</td></tr>
+        <tr><td>Radio de las esquinas, cuando se redondea</td><td>2,8 x</td></tr>
+      </table>
+      <p class="gris chico" style="margin-top:5mm">La letra queda centrada en el ancho y apenas más arriba que el centro, para compensar el peso de la sombra.</p>
+      <p class="gris chico">El logo se reproduce siempre a partir del archivo original: no se vuelve a dibujar ni se reemplaza la letra por una tipografía parecida.</p>
+    </div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 03 Versiones -->
+<section class="pagina">
+  <div class="seccion">03 · Versiones del logo</div>
+  <h1>La misma M en cada fondo.</h1>
+  <p class="bajada">La versión se elige según dónde se apoya. La principal es la preferida siempre que haya lugar para el cuadrado.</p>
+  <div class="fila" style="gap:6mm">
+    <div class="col">
+      <div class="lienzo lila" style="height:84mm"><img src="logos/principal.png" alt="" style="height:35mm"></div>
+      <h2 style="margin-top:4mm">Principal</h2>
+      <p class="chico">Letra blanca con sombra sobre cuadrado violeta. Para impresos, etiquetas, packaging y redes.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo lila" style="height:84mm"><img class="redondo" src="logos/principal.png" alt="" style="height:35mm"></div>
+      <h2 style="margin-top:4mm">Ícono</h2>
+      <p class="chico">La principal con esquinas redondeadas (radio de 28 % del lado). Para la aplicación, perfiles y avatares.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo grad" style="height:84mm"><img src="logos/blanco-transparente.png" alt="" style="height:46mm"></div>
+      <h2 style="margin-top:4mm">Sobre degradé</h2>
+      <p class="chico">La letra blanca con su sombra, sin cuadrado, directamente sobre el degradé de la marca.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo blanco" style="height:84mm"><img src="logos/positivo-transparente.png" alt="" style="height:46mm"></div>
+      <h2 style="margin-top:4mm">Positivo</h2>
+      <p class="chico">La letra en violeta Munay, sin sombra, sobre blanco o fondos muy claros donde el cuadrado no entra.</p>
+    </div>
+    <div class="col">
+      <div class="fila" style="gap:0;height:84mm">
+        <div class="lienzo blanco col" style="border-radius:5mm 0 0 5mm;border-right:0"><img src="logos/mono-negro.png" alt="" style="height:27mm"></div>
+        <div class="lienzo col" style="background:#000;border-radius:0 5mm 5mm 0"><img src="logos/mono-blanco.png" alt="" style="height:27mm"></div>
+      </div>
+      <h2 style="margin-top:4mm">Monocromo</h2>
+      <p class="chico">Solo la letra, en negro o en blanco. Para sellos, grabado o impresión a una tinta.</p>
+    </div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 04 Resguardo y tamaños -->
+<section class="pagina">
+  <div class="seccion">04 · Resguardo y tamaños</div>
+  <h1>Aire alrededor del cuadrado.</h1>
+  <p class="bajada">El logo convive con fotos, personajes y muchos colores. El espacio libre es lo que lo mantiene legible.</p>
+  <div class="fila" style="gap:16mm">
+    <div style="position:relative;width:118mm;height:118mm;flex:none;background:#fff;border:0.3mm solid var(--borde);border-radius:5mm">
+      <div style="position:absolute;left:14mm;top:14mm;width:90mm;height:90mm;border:0.3mm dashed var(--rosa)"></div>
+      <img src="logos/principal.png" alt="" style="position:absolute;left:29mm;top:29mm;width:60mm">
+      <div style="position:absolute;left:14mm;top:14mm;width:15mm;height:15mm;background:rgba(236,95,168,.14);border:0.25mm solid var(--rosa);font-size:7pt;font-weight:700;color:var(--rosa);display:flex;align-items:center;justify-content:center">2,5 x</div>
+      <div style="position:absolute;left:89mm;top:89mm;width:15mm;height:15mm;background:rgba(236,95,168,.14);border:0.25mm solid var(--rosa);font-size:7pt;font-weight:700;color:var(--rosa);display:flex;align-items:center;justify-content:center">2,5 x</div>
+    </div>
+    <div class="col">
+      <div class="bloque"><h2>Área de resguardo</h2><p>Alrededor del logo se deja libre, como mínimo, una distancia de <b>2,5 x</b>: un cuarto del lado del cuadrado. Dentro de esa zona no van textos, precios, personajes ni otros logos.</p></div>
+      <div class="bloque"><h2>Tamaños mínimos</h2>
+        <p>· Logo en pantalla: <b>24 px</b> de lado.<br>· Logo impreso: <b>10 mm</b> de lado.<br>· Ícono de aplicación: <b>16 px</b> de lado.</p>
+        <p class="gris chico">Por debajo de 24 px la sombra deja de distinguirse; en el ícono de 16 px se acepta porque es el tamaño que pide el sistema.</p>
+      </div>
+      <div style="background:#fff;border:0.3mm solid var(--borde);border-radius:5mm;display:flex;align-items:flex-end;justify-content:space-around;padding:6mm 6mm 4mm;text-align:center;font-size:7pt;color:var(--tenue)">
+        <div><img src="logos/principal.png" alt="" style="height:30mm;margin:0 auto 2mm">Destacado</div>
+        <div><img class="redondo" src="logos/principal.png" alt="" style="height:18mm;margin:0 auto 2mm">Uso general</div>
+        <div><img class="redondo" src="logos/principal.png" alt="" style="height:11.1mm;margin:0 auto 2mm">En la app · 42 px</div>
+        <div><img src="logos/principal.png" alt="" style="height:6.35mm;margin:0 auto 2mm">Mínimo · 24 px</div>
+        <div><img src="logos/principal.png" alt="" style="height:4.2mm;margin:0 auto 2mm">16 px</div>
+      </div>
+    </div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 05 Color -->
+<section class="pagina">
+  <div class="seccion">05 · Color</div>
+  <h1>Del violeta al rosa.</h1>
+  <div class="muestras" style="grid-template-columns:repeat(4,1fr) 1.6fr;margin-top:5mm">
+    <div class="muestra"><div class="tono" style="background:#8b75ff"></div><div class="dato"><b>Violeta Munay</b>#8B75FF · RGB 139, 117, 255<br>Fondo del logo. Color principal.</div></div>
+    <div class="muestra"><div class="tono" style="background:#6f55f2"></div><div class="dato"><b>Violeta fuerte</b>#6F55F2 · RGB 111, 85, 242<br>Textos y acciones sobre claro.</div></div>
+    <div class="muestra"><div class="tono" style="background:#ec5fa8"></div><div class="dato"><b>Rosa Munay</b>#EC5FA8 · RGB 236, 95, 168<br>Acento y destacados.</div></div>
+    <div class="muestra"><div class="tono" style="background:#7152b9"></div><div class="dato"><b>Violeta sombra</b>#7152B9 · RGB 113, 82, 185<br>Solo la sombra de la letra.</div></div>
+    <div class="muestra"><div class="tono" style="background:var(--degrade)"></div><div class="dato"><b>Degradé Munay</b>#8B75FF → #B46CF0 → #EC5FA8, a 120°<br>Encabezados, botón principal y precios.</div></div>
+  </div>
+  <h2 style="margin:5mm 0 2.5mm">Neutros y estados · modo claro</h2>
+  <div class="muestras" style="grid-template-columns:repeat(7,1fr);gap:4mm">
+    <div class="muestra baja"><div class="tono" style="background:#fbf6fd;border-bottom:0.3mm solid var(--borde)"></div><div class="dato"><b>Fondo</b>#FBF6FD</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#f5ecfb;border-bottom:0.3mm solid var(--borde)"></div><div class="dato"><b>Lila suave</b>#F5ECFB · campos</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#e9dcf3"></div><div class="dato"><b>Borde</b>#E9DCF3</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#7b6a8e"></div><div class="dato"><b>Texto tenue</b>#7B6A8E</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#2a1b3d"></div><div class="dato"><b>Texto</b>#2A1B3D</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#2f9e6e"></div><div class="dato"><b>Verde</b>#2F9E6E · correcto</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#d9488a"></div><div class="dato"><b>Alerta</b>#D9488A · avisos</div></div>
+  </div>
+  <h2 style="margin:5mm 0 2.5mm">Modo oscuro</h2>
+  <div class="muestras" style="grid-template-columns:repeat(7,1fr);gap:4mm">
+    <div class="muestra baja"><div class="tono" style="background:#150f1f"></div><div class="dato"><b>Fondo</b>#150F1F</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#20172e"></div><div class="dato"><b>Superficie</b>#20172E</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#3a2b50"></div><div class="dato"><b>Borde</b>#3A2B50</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#ab9bbf"></div><div class="dato"><b>Texto tenue</b>#AB9BBF</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#f3eafb;border-bottom:0.3mm solid var(--borde)"></div><div class="dato"><b>Texto</b>#F3EAFB</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#a594ff"></div><div class="dato"><b>Violeta</b>#A594FF</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#f37fba"></div><div class="dato"><b>Rosa</b>#F37FBA</div></div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 06 Tipografía -->
+<section class="pagina">
+  <div class="seccion">06 · Tipografía</div>
+  <h1>Montserrat en las piezas, Segoe UI en la app.</h1>
+  <div class="fila" style="gap:14mm;margin-top:6mm">
+    <div class="col">
+      <div class="fila" style="gap:8mm;align-items:center;margin-bottom:8mm">
+        <div class="aa" style="width:36mm">Aa</div>
+        <div class="col"><h2>Montserrat</h2>
+          <p class="abc" style="font-weight:700">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</p>
+          <p class="abc">abcdefghijklmnñopqrstuvwxyz<br>0123456789 · $ % — « »</p></div>
+      </div>
+      <div class="fila" style="gap:8mm;align-items:center;font-family:'Segoe UI',sans-serif">
+        <div class="aa" style="width:36mm">Aa</div>
+        <div class="col"><h2>Segoe UI</h2>
+          <p class="abc" style="font-weight:700">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</p>
+          <p class="abc">abcdefghijklmnñopqrstuvwxyz<br>0123456789 · $ % — « »</p></div>
+      </div>
+      <p class="gris chico" style="margin-top:8mm"><b>Montserrat</b> es la tipografía de los textos en catálogos, listas de precios, etiquetas y redes, y la de este manual. <b>Segoe UI</b> es la tipografía de sistema de Windows: la usa el Cotizador, sin instalar fuentes propias.</p>
+      <p class="gris chico">Los títulos decorativos de cada pieza —los de un catálogo o una promo— pueden usar una tipografía de fantasía acorde a la temática, siempre en violeta o rosa de la marca.</p>
+    </div>
+    <div class="col">
+      <h2>Jerarquía</h2>
+      <table class="escala">
+        <tr><td style="font-size:21pt;font-weight:800;letter-spacing:-0.02em">Toppers para torta</td><td>Títulos · Extrabold</td></tr>
+        <tr><td style="font-size:13pt;font-weight:600;color:var(--violeta-fuerte)">Con nombre y temática</td><td>Subtítulos · Semibold, violeta fuerte</td></tr>
+        <tr><td style="font-size:15pt;font-weight:800">$ 11.600</td><td>Precios · Extrabold</td></tr>
+        <tr><td style="font-size:10pt">Armados en varias capas, a pedido.</td><td>Texto · Regular</td></tr>
+        <tr><td style="font-size:8.5pt;color:var(--tenue)">Precios sujetos a modificación.</td><td>Aclaraciones · Regular, tenue</td></tr>
+        <tr><td style="font-size:7.5pt;font-weight:700;letter-spacing:.14em">PRECIO FINAL SUGERIDO</td><td>Rótulos · Bold, mayúsculas, +14 %</td></tr>
+      </table>
+      <h2 style="margin-top:7mm">El nombre escrito</h2>
+      <div class="fila" style="gap:5mm">
+        <div class="lienzo grad col" style="height:27mm"><span style="font-size:24pt;font-weight:700;color:#fff">Munay</span></div>
+        <div class="lienzo blanco col" style="height:27mm"><span style="font-size:24pt;font-weight:700;color:var(--violeta-fuerte)">Munay</span></div>
+      </div>
+      <p class="gris chico" style="margin-top:3mm">En negrita. Blanco sobre el degradé o el violeta; violeta fuerte sobre fondos claros.</p>
+    </div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 07 Logo con nombre -->
+<section class="pagina">
+  <div class="seccion">07 · Logo con nombre</div>
+  <h1>El ícono y, al lado, Munay.</h1>
+  <p class="bajada">Cuando el logo va acompañado del nombre —encabezados, firmas, sellos de catálogo— el nombre se escribe a la derecha del ícono.</p>
+  <div class="fila">
+    <div class="col">
+      <div class="lienzo grad" style="height:74mm;gap:6mm">
+        <img class="redondo" src="logos/principal.png" alt="" style="height:24mm;box-shadow:0 1mm 4mm rgba(0,0,0,.2)">
+        <div style="color:#fff;line-height:1.1"><div style="font-size:38pt;font-weight:700">Munay</div><div style="font-size:12pt;opacity:.9">Cotizador</div></div>
+      </div>
+      <h2 style="margin-top:4mm">Sobre el degradé</h2>
+      <p class="chico">Ícono redondeado con una sombra suave que lo despega del fondo. Nombre en blanco y, debajo, el descriptor en peso regular.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo blanco" style="height:74mm;gap:6mm">
+        <img class="redondo" src="logos/principal.png" alt="" style="height:24mm">
+        <div style="line-height:1.1"><div style="font-size:38pt;font-weight:700;color:var(--violeta-fuerte)">Munay</div><div style="font-size:12pt;color:var(--tenue)">Papelería creativa</div></div>
+      </div>
+      <h2 style="margin-top:4mm">Sobre fondo claro</h2>
+      <p class="chico">El mismo ícono, sin sombra. Nombre en violeta fuerte y descriptor en texto tenue.</p>
+    </div>
+  </div>
+  <div class="fila" style="margin-top:6mm">
+    <div class="col"><h2>Proporción</h2><p class="chico">El alto de la «M» del nombre es la mitad del lado del ícono. Ícono y texto se alinean por el centro.</p></div>
+    <div class="col"><h2>Separación</h2><p class="chico">Entre el ícono y el nombre se deja un cuarto del lado del ícono, igual que el área de resguardo.</p></div>
+    <div class="col"><h2>Descriptor</h2><p class="chico">Opcional, en una sola línea debajo del nombre: el producto («Cotizador») o el rubro («Papelería creativa»).</p></div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 08 La marca en la aplicación -->
+<section class="pagina">
+  <div class="seccion">08 · La marca en la aplicación</div>
+  <h1>El degradé arriba, el contenido tranquilo.</h1>
+  <div class="fila" style="margin-top:6mm;gap:8mm">
+    <div class="col">
+      <img src="capturas/app-claro.png" alt="Munay Cotizador en modo claro" style="width:100%;height:82mm;object-fit:cover;object-position:top;border-radius:3mm;border:0.3mm solid var(--borde)">
+      <h2 style="margin-top:4mm">Modo claro</h2>
+      <p class="chico">Fondo casi blanco con un tinte lila, tarjetas blancas y campos en lila suave. El color queda para el encabezado, los pasos numerados, el botón principal y el precio final.</p>
+    </div>
+    <div class="col">
+      <img src="capturas/app-oscuro.png" alt="Munay Cotizador en modo oscuro" style="width:100%;height:82mm;object-fit:cover;object-position:top;border-radius:3mm;border:0.3mm solid var(--borde)">
+      <h2 style="margin-top:4mm">Modo oscuro</h2>
+      <p class="chico">El encabezado y el degradé no cambian. Fondos y tarjetas pasan a violetas muy oscuros; el violeta y el rosa se aclaran un paso para mantener el contraste.</p>
+    </div>
+  </div>
+  <div class="fila" style="margin-top:5mm">
+    <div class="col"><h2>Encabezado</h2><p class="chico">Una franja con el degradé de la marca. A la izquierda, el ícono redondeado de 42 px y el nombre con su descriptor; después, las secciones como píldoras.</p></div>
+    <div class="col"><h2>Ícono</h2><p class="chico">El ejecutable y la barra de tareas usan el logo principal como ícono, en los tamaños que pide Windows: de 16 a 256 px.</p></div>
+    <div class="col"><h2>Regla</h2><p class="chico">El degradé aparece pocas veces por pantalla y siempre marca lo más importante. Si todo lleva degradé, nada se destaca.</p></div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 09 Estilo de la interfaz -->
+<section class="pagina">
+  <div class="seccion">09 · Estilo de la interfaz</div>
+  <h1>Todo redondeado, un solo protagonista.</h1>
+  <div class="fila" style="margin-top:6mm;gap:12mm">
+    <div style="width:126mm;flex:none;zoom:1.12">
+      <div class="cabecera" style="margin-bottom:4mm">
+        <img src="logos/principal.png" alt="">
+        <div class="nombre">Munay<small>Cotizador</small></div>
+        <span class="tab activo" style="margin-left:5mm">Cotizar</span><span class="tab">Insumos</span><span class="tab">Productos</span>
+      </div>
+      <div class="ui">
+        <div class="tarjeta">
+          <div style="font-weight:700;font-size:10.5pt;margin-bottom:3mm"><span class="paso">1</span>Producto</div>
+          <div class="fila" style="gap:3mm;margin-bottom:3mm"><div class="campo col">Ej.: Stickers redondos 5 cm</div><div class="campo" style="width:22mm">1</div></div>
+          <div class="fila" style="gap:2.5mm;align-items:center"><span class="b primario">Guardar cotización</span><span class="b">Registrar venta</span><span class="b sobre">Al pasar</span><span class="chip" style="margin-left:auto">Stock bajo</span></div>
+        </div>
+        <div class="precio" style="margin-top:4mm"><div style="font-size:7.5pt;letter-spacing:.06em">PRECIO FINAL SUGERIDO</div><div style="font-size:18pt;font-weight:800;line-height:1.2">$ 11.600,00</div></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="bloque"><h2>Tarjetas</h2><p>Blancas, con borde lila, esquinas de 16 px y una sombra violeta muy suave. Cada paso lleva su número en un círculo con el degradé.</p></div>
+      <div class="bloque"><h2>Botones</h2><p>Esquinas de 10 px. El principal lleva el degradé y texto blanco; los demás son blancos con borde, y al pasar el cursor toman el violeta.</p></div>
+      <div class="bloque"><h2>Píldoras</h2><p>Las secciones del encabezado y las etiquetas de estado son píldoras, con el radio al máximo. La sección activa va en blanco con texto violeta fuerte.</p></div>
+      <div class="bloque"><h2>Campos</h2><p>Fondo lila suave, borde lila y esquinas de 10 px. Al hacer foco, un contorno violeta de 2 px.</p></div>
+    </div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- 10 Usos incorrectos -->
+<section class="pagina">
+  <div class="seccion">10 · Usos incorrectos</div>
+  <h1>Lo que no se hace con el logo.</h1>
+  <div class="errores" style="margin-top:5mm">
+    <div><div class="lienzo lila"><img src="logos/error-color.png" alt=""></div><p>No cambiar el color del cuadrado ni de la sombra.</p></div>
+    <div><div class="lienzo lila"><img src="logos/principal.png" alt="" style="transform:scaleX(1.6)"></div><p>No estirar ni deformar.</p></div>
+    <div><div class="lienzo lila"><img src="logos/principal.png" alt="" style="transform:rotate(-16deg);height:34mm"></div><p>No rotar ni inclinar.</p></div>
+    <div><div class="lienzo" style="background:#8b75ff"><img src="logos/positivo-transparente.png" alt=""></div><p>No usar la letra violeta sobre violeta: se pierde.</p></div>
+    <div><div class="lienzo lila"><img src="logos/principal.png" alt="" style="filter:drop-shadow(2.5mm 2.5mm 1.5mm rgba(0,0,0,.5))"></div><p>No agregar sombras duras, brillos ni contornos.</p></div>
+    <div><div class="lienzo" style="background:repeating-linear-gradient(45deg,#ffd166 0 6mm,#ef476f 6mm 12mm,#06d6a0 12mm 18mm)"><img src="logos/blanco-transparente.png" alt=""></div><p>No apoyar la letra suelta sobre fondos recargados: ahí va con su cuadrado.</p></div>
+  </div>
+  <div class="pie"><span>Munay. Manual de marca</span></div>
+</section>
+
+<!-- Cierre -->
+<section class="pagina degrade" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+  <img src="logos/blanco-transparente.png" alt="" style="height:86mm;margin-bottom:2mm">
+  <div style="font-size:26pt;font-weight:700">Munay</div>
+  <p style="margin-top:3mm;opacity:.9">Manual de marca · Versión 1.0 · Octubre 2026</p>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Currículum</title>
+  <!-- El currículum se arma con los mismos datos del sitio (assets/js/data.js).
+       Para generar el PDF: generar_pdf.ps1 -->
+  <style>
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 400 800;
+      src: url("../../assets/fonts/montserrat-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 400 800;
+      src: url("../../assets/fonts/montserrat-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @page { size: A4; margin: 13mm 14mm 13mm; }
+
+    :root {
+      --azul: #1e40af;
+      --ambar: #ffb000;
+      --negro: #0e1116;
+      --texto: #1c1b19;
+      --suave: #5c5852;
+      --borde: #dedad3;
+      --relleno: #f3f1ec;
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body {
+      margin: 0;
+      font: 400 8.6pt/1.45 "Segoe UI", system-ui, Arial, sans-serif;
+      color: var(--texto);
+    }
+    h1, h2, h3, .rol, .etiqueta { font-family: "Montserrat", "Segoe UI", sans-serif; }
+    p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- cabecera ---------- */
+    .cabecera {
+      display: grid;
+      grid-template-columns: 31mm 1fr auto;
+      gap: 6mm;
+      align-items: center;
+      padding-bottom: 5mm;
+      border-bottom: 0.7mm solid var(--azul);
+    }
+    .cabecera img {
+      width: 31mm;
+      height: 31mm;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+    h1 {
+      margin: 0;
+      font-size: 25pt;
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--azul);
+      letter-spacing: -0.01em;
+    }
+    .rol {
+      margin-top: 1.6mm;
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: var(--negro);
+    }
+    .rol::before {
+      content: "";
+      display: inline-block;
+      width: 2.2mm;
+      height: 2.2mm;
+      margin-right: 2mm;
+      border-radius: 50%;
+      background: var(--ambar);
+    }
+    .contacto {
+      margin: 0;
+      padding: 0 0 0 5mm;
+      list-style: none;
+      border-left: 0.3mm solid var(--borde);
+      font-size: 8.2pt;
+      line-height: 1.6;
+    }
+    .contacto b { font-weight: 600; color: var(--azul); }
+
+    /* ---------- secciones ---------- */
+    section { margin-top: 5mm; }
+    h2 {
+      margin: 0 0 2.4mm;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--azul);
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+      break-after: avoid;
+    }
+    h2::after { content: ""; flex: 1; height: 0.25mm; background: var(--borde); }
+    h3 { margin: 0; font-size: 8.8pt; font-weight: 700; color: var(--negro); }
+
+    .perfil p + p { margin-top: 1.4mm; }
+
+    .item {
+      display: grid;
+      grid-template-columns: 37mm 1fr;
+      gap: 4mm;
+      padding: 1.5mm 0;
+      break-inside: avoid;
+    }
+    .item + .item { border-top: 0.2mm solid var(--borde); }
+    .periodo { font-size: 8pt; color: var(--suave); padding-top: 0.2mm; }
+    .lugar { color: var(--suave); }
+    .detalle { margin-top: 0.6mm; }
+    .etiqueta {
+      display: inline-block;
+      margin-left: 1.5mm;
+      padding: 0.1mm 1.8mm;
+      border-radius: 3mm;
+      background: var(--relleno);
+      font-size: 6.6pt;
+      font-weight: 600;
+      color: var(--azul);
+      vertical-align: 0.2mm;
+      white-space: nowrap;
+    }
+
+    .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 0 7mm; }
+    .proyecto { padding: 1.3mm 0; break-inside: avoid; }
+    .tecnologias { font-size: 7.6pt; color: var(--suave); }
+
+    .cursos { columns: 3; column-gap: 6mm; }
+    .grupo { break-inside: avoid; margin-bottom: 2.6mm; }
+    .grupo ul { margin: 0.5mm 0 0; padding: 0; list-style: none; font-size: 7.9pt; line-height: 1.4; }
+    .grupo li { padding-left: 2.6mm; text-indent: -2.6mm; }
+    .grupo li::before { content: "·"; display: inline-block; width: 2.6mm; text-indent: 0; color: var(--ambar); font-weight: 700; }
+
+    .tres { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 0 6mm; break-inside: avoid; }
+    .habilidades { margin-top: 2.5mm; break-inside: avoid; }
+    .chips { margin: 0.8mm 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 1.2mm; }
+    .chips li {
+      padding: 0.3mm 2.2mm;
+      border: 0.2mm solid var(--borde);
+      border-radius: 3mm;
+      font-size: 7.8pt;
+    }
+  </style>
+</head>
+<body>
+  <script src="../../assets/js/data.js"></script>
+  <script>
+    (function () {
+      const D = window.PORTFOLIO;
+      const cv = D.cv;
+      const RAIZ = "../../";
+
+      function el(tag, attrs, ...hijos) {
+        const n = document.createElement(tag);
+        for (const [k, v] of Object.entries(attrs || {})) n.setAttribute(k, v);
+        n.append(...hijos.flat(Infinity).filter((h) => h !== null && h !== undefined && h !== ""));
+        return n;
+      }
+
+      function seccion(titulo, ...hijos) {
+        return el("section", null, el("h2", null, titulo), hijos);
+      }
+
+      // Junta los ítems de todos los grupos que cumplen la condición, con el
+      // nombre de su área para mostrarlo como etiqueta.
+      function itemsDe(condicion) {
+        const lista = [];
+        cv.columnas.forEach((col) =>
+          col.areas.forEach((area) =>
+            (area.grupos || []).forEach((g) => {
+              if (g.items && condicion(g, area)) g.items.forEach((x) => lista.push({ ...x, area: area.titulo, grupo: g.titulo }));
+            })
+          )
+        );
+        return lista;
+      }
+
+      // Ordena de lo más reciente a lo más antiguo; lo que sigue vigente va primero.
+      const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+      function clave(periodo) {
+        const anios = (periodo.match(/\d{4}/g) || ["0"]).map(Number);
+        const vigente = /actualidad|en curso/i.test(periodo);
+        const mes = MESES.findIndex((m) => periodo.toLowerCase().startsWith(m)) + 1;
+        return [vigente ? 9999 : anios[anios.length - 1], anios[0], mes];
+      }
+      function porFecha(a, b) {
+        const x = clave(a.periodo), y = clave(b.periodo);
+        return y[0] - x[0] || y[1] - x[1] || y[2] - x[2];
+      }
+
+      function item(x, etiqueta) {
+        return el(
+          "div",
+          { class: "item" },
+          el("div", { class: "periodo" }, x.periodo),
+          el(
+            "div",
+            null,
+            el("h3", null, x.titulo, etiqueta ? el("span", { class: "etiqueta" }, etiqueta) : null),
+            el("p", { class: "lugar" }, x.lugar),
+            x.detalle ? el("p", { class: "detalle" }, x.detalle) : null
+          )
+        );
+      }
+
+      const trabajos = itemsDe((g) => g.titulo === "Trabajo").sort(porFecha);
+      const estudios = itemsDe((g) => g.titulo === "Educación").sort(porFecha);
+      const otros = itemsDe((g) => g.titulo !== "Trabajo" && g.titulo !== "Educación").sort(porFecha);
+
+      const gruposCursos = [];
+      cv.columnas.forEach((col) => col.areas.forEach((a) => (a.grupos || []).forEach((g) => g.cursos && g.cursos.length && gruposCursos.push(g))));
+
+      const redes = D.redes.filter((r) => r.url);
+      const corta = (url) => decodeURI(url).replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+
+      document.title = `${D.nombre} — Currículum`;
+      document.body.append(
+        el(
+          "header",
+          { class: "cabecera" },
+          el("img", { src: RAIZ + (cv.foto || D.foto), alt: "" }),
+          el("div", null, el("h1", null, D.nombre), el("p", { class: "rol" }, D.rol)),
+          el(
+            "ul",
+            { class: "contacto" },
+            el("li", null, D.ubicacion),
+            el("li", null, el("a", { href: `mailto:${D.email}` }, D.email)),
+            redes.map((r) => el("li", null, el("b", null, r.nombre + " "), el("a", { href: r.url }, r.texto || corta(r.url))))
+          )
+        ),
+
+        // El último párrafo del perfil invita a recorrer la página y a descargar
+        // este mismo archivo, así que acá no va.
+        seccion("Perfil", el("div", { class: "perfil" }, cv.perfil.slice(0, -1).map((p) => el("p", null, p)))),
+
+        seccion("Experiencia", trabajos.map((x) => item(x, x.area))),
+        seccion("Formación", estudios.map((x) => item(x))),
+        otros.length ? seccion("Exposiciones y reconocimientos", otros.map((x) => item(x))) : null,
+
+        seccion(
+          "Proyectos de software",
+          el(
+            "div",
+            { class: "dos" },
+            D.software.map((p) =>
+              el(
+                "div",
+                { class: "proyecto" },
+                el("h3", null, p.titulo, p.anio ? el("span", { class: "etiqueta" }, p.anio) : null),
+                el("p", null, p.resumen),
+                el("p", { class: "tecnologias" }, p.tecnologias.join(" · "))
+              )
+            )
+          )
+        ),
+
+        seccion(
+          "Diseño y fotografía",
+          el(
+            "div",
+            { class: "dos" },
+            el(
+              "div",
+              { class: "proyecto" },
+              el("h3", null, "Identidad visual y manuales de marca"),
+              el("p", null, D.diseno.map((d) => d.titulo).join(" · "))
+            ),
+            el(
+              "div",
+              { class: "proyecto" },
+              el("h3", null, "Fotografía"),
+              el("p", null, D.fotografia.map((f) => f.titulo).join(" · "))
+            )
+          )
+        ),
+
+        seccion(
+          "Habilidades",
+          el(
+            "div",
+            { class: "tres" },
+            [
+              ["Creativas", cv.columnas[0].habilidades],
+              ["Lógicas", cv.columnas[1].habilidades],
+              ["Blandas", cv.blandas || []]
+            ].map(([titulo, lista]) => el("div", null, el("h3", null, titulo), el("ul", { class: "chips" }, lista.map((h) => el("li", null, h)))))
+          ),
+          el("div", { class: "habilidades" }, el("h3", null, "Idiomas"), el("ul", { class: "chips" }, cv.idiomas.map((i) => el("li", null, i))))
+        ),
+
+        seccion(
+          "Cursos y especializaciones",
+          el("div", { class: "cursos" }, gruposCursos.map((g) => el("div", { class: "grupo" }, el("h3", null, g.titulo), el("ul", null, g.cursos.map((c) => el("li", null, c.replace(/ · (?=[\d–]+$)/, " · ")))))))
+        )
+      );
+    })();
+  </script>
+</body>
+</html>

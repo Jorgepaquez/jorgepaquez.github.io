@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JP — Manual de marca</title>
+<style>
+  @page { size: 297mm 210mm; margin: 0; }
+
+  :root {
+    --azul: #1e40af;
+    --ambar: #ffb000;
+    --negro: #0e1116;
+    --papel: #f6f5f1;
+    --gris: #5b6270;
+    --linea: #dedcd4;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Poppins", "Segoe UI", sans-serif; font-size: 9.5pt; line-height: 1.5; color: var(--negro); counter-reset: pagina; }
+  img { display: block; }
+  p { margin: 0 0 2.5mm; }
+  b, strong { font-weight: 600; }
+
+  .pagina {
+    position: relative; width: 297mm; height: 210mm; padding: 17mm 20mm 16mm;
+    background: var(--papel); overflow: hidden;
+    page-break-after: always; break-after: page; counter-increment: pagina;
+  }
+  .pagina:last-child { page-break-after: auto; break-after: auto; }
+  .pagina.azul { background: var(--azul); color: #fff; }
+  .pagina.azul .seccion { color: var(--ambar); }
+
+  .seccion { font-size: 7.5pt; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--azul); margin-bottom: 3mm; }
+  h1 { font-size: 28pt; line-height: 1.12; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 4mm; }
+  h2 { font-size: 10.5pt; font-weight: 600; margin: 0 0 1.2mm; }
+  .bajada { max-width: 195mm; color: var(--gris); font-size: 10.5pt; margin-bottom: 7mm; }
+  .gris { color: var(--gris); }
+  .chico { font-size: 8.2pt; }
+
+  .pie { position: absolute; left: 20mm; right: 20mm; bottom: 9mm; display: flex; justify-content: space-between; font-size: 7pt; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
+  .pie::after { content: counter(pagina, decimal-leading-zero); }
+
+  .fila { display: flex; gap: 8mm; }
+  .col { flex: 1; min-width: 0; }
+  .lienzo { display: flex; align-items: center; justify-content: center; border-radius: 4mm; }
+  .f-blanco { background: #fff; border: 0.3mm solid var(--linea); }
+  .f-papel { background: #eceae3; }
+  .f-azul { background: var(--azul); }
+  .f-negro { background: var(--negro); }
+  .f-ambar { background: var(--ambar); }
+  .bloque { margin-bottom: 5.5mm; }
+
+  /* Portada */
+  .portada { display: flex; align-items: center; gap: 26mm; padding: 0 30mm; }
+  .portada h1 { font-size: 40pt; margin: 3mm 0 5mm; }
+  .portada .lema { font-size: 13pt; max-width: 110mm; opacity: .92; }
+  .portada .version { position: absolute; left: 30mm; right: 30mm; bottom: 14mm; font-size: 7.5pt; font-weight: 600; letter-spacing: 0.14em; border-top: 0.3mm solid rgba(255,255,255,.35); padding-top: 4mm; display: flex; justify-content: space-between; }
+
+  /* Construcción */
+  .plano { position: relative; width: 115.2mm; height: 112.2mm; }
+  .plano img { width: 100%; height: 100%; }
+  .guia { position: absolute; left: -6mm; right: -6mm; border-top: 0.25mm dashed var(--ambar); }
+  .guia span { position: absolute; left: 100%; top: -2.2mm; margin-left: 6mm; font-size: 6.5pt; color: var(--gris); white-space: nowrap; }
+  .cota { position: absolute; font-size: 7pt; font-weight: 600; color: var(--azul); white-space: nowrap; display: flex; align-items: center; justify-content: center; }
+  .cota.h { height: 3mm; border-left: 0.25mm solid currentColor; border-right: 0.25mm solid currentColor; }
+  .cota.h::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 0.25mm solid currentColor; }
+  .cota.v { width: 3mm; border-top: 0.25mm solid currentColor; border-bottom: 0.25mm solid currentColor; }
+  .cota.v::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; border-left: 0.25mm solid currentColor; }
+  .cota span { position: relative; background: var(--papel); padding: 0 1mm; }
+  .cota.v span { writing-mode: vertical-rl; transform: rotate(180deg); padding: 1mm 0; }
+
+  table.medidas, table.escala { border-collapse: collapse; width: 100%; }
+  table.medidas td { padding: 1.9mm 0; border-bottom: 0.25mm solid var(--linea); vertical-align: top; }
+  table.medidas td:last-child { text-align: right; font-weight: 600; white-space: nowrap; padding-left: 4mm; }
+  table.escala td { padding: 2.2mm 0; border-bottom: 0.25mm solid var(--linea); vertical-align: baseline; }
+  table.escala td:last-child { text-align: right; font-size: 7.5pt; color: var(--gris); white-space: nowrap; padding-left: 3mm; }
+
+  /* Combinaciones */
+  .combos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3.5mm 5mm; }
+  .combos .lienzo { height: 33mm; }
+  .combos img { height: 20mm; }
+  .combos p { margin: 1.5mm 0 0; font-size: 7.8pt; line-height: 1.35; color: var(--gris); }
+  .combos p b { color: var(--negro); display: block; }
+
+  /* Color */
+  .muestra { border-radius: 4mm; overflow: hidden; background: #fff; border: 0.3mm solid var(--linea); }
+  .muestra .tono { height: 44mm; display: flex; align-items: flex-end; padding: 4mm; font-size: 15pt; font-weight: 700; }
+  .muestra .dato { padding: 3mm 4mm 3.5mm; font-size: 7.8pt; line-height: 1.45; color: var(--gris); }
+  .muestra .dato b { display: block; color: var(--negro); font-size: 9pt; }
+  .proporcion { display: flex; height: 13mm; border-radius: 3mm; overflow: hidden; border: 0.3mm solid var(--linea); font-size: 7.5pt; font-weight: 600; }
+  .proporcion div { display: flex; align-items: center; padding-left: 3mm; }
+
+  .aa { font-size: 64pt; font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
+  .abc { font-size: 11pt; line-height: 1.55; margin: 0; }
+
+  /* Aplicaciones */
+  .tarjeta-p { width: 61mm; height: 36mm; border-radius: 2.5mm; box-shadow: 0 2mm 7mm rgba(14,17,22,.16); }
+  .pestana { background: #dfe3ea; border-radius: 3mm 3mm 0 0; padding: 2.5mm 3mm 0; display: flex; }
+  .pestana div { background: #fff; border-radius: 2.5mm 2.5mm 0 0; padding: 2mm 9mm 2mm 3mm; display: flex; align-items: center; gap: 2.2mm; font-family: "Segoe UI", sans-serif; font-size: 8pt; }
+  .pestana img { width: 4.2mm; height: 4.2mm; }
+
+  /* Usos incorrectos */
+  .errores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm 8mm; }
+  .errores .lienzo { position: relative; height: 52mm; overflow: hidden; }
+  .errores .lienzo::after { content: "✕"; position: absolute; top: 2.5mm; right: 4mm; color: #d0342c; font-size: 11pt; font-weight: 700; }
+  .errores img { height: 30mm; }
+  .errores p { margin: 2mm 0 0; font-size: 9pt; }
+</style>
+</head>
+<body>
+
+<!-- Portada -->
+<section class="pagina azul portada">
+  <img src="logos/jp-blanco.svg" alt="Logo jp" style="height:96mm">
+  <div>
+    <div class="seccion">Manual de marca · v1.0</div>
+    <h1>Marca personal</h1>
+    <p class="lema">Logo, color, tipografía y uso de la marca jp en fotografía, software y diseño gráfico.</p>
+  </div>
+  <div class="version"><span>VERSIÓN 1.0 · OCTUBRE 2026</span><span>FOTOGRAFÍA · SOFTWARE · DISEÑO GRÁFICO</span></div>
+</section>
+
+<!-- 01 La marca -->
+<section class="pagina">
+  <div class="seccion">01 · La marca</div>
+  <h1>Dos letras y un punto.</h1>
+  <p class="bajada">El logo son las iniciales «jp» en minúsculas, dibujadas con un solo grosor de trazo. El punto de la j es el único elemento con otro color: es el acento de la marca.</p>
+  <div class="fila">
+    <div class="lienzo f-blanco" style="width:100mm;height:118mm;flex:none"><img src="logos/jp-azul.svg" alt="" style="height:74mm"></div>
+    <div class="col">
+      <div class="bloque"><h2>Las letras</h2><p>Una j y una p geométricas: trazos rectos, un gancho y un círculo perfecto. Minúsculas, para que la marca sea cercana antes que solemne.</p></div>
+      <div class="bloque"><h2>El punto</h2><p>Un círculo en ámbar sobre la j. Es lo primero que se ve y lo que se repite en todas las piezas: una luz encendida, un foco, un cursor.</p></div>
+      <div class="bloque"><h2>El trazo</h2><p>Todo el logo tiene el mismo grosor. Las terminaciones son rectas y las uniones, redondeadas.</p></div>
+    </div>
+    <div class="col">
+      <div class="bloque"><h2>El nombre</h2><p>La marca se nombra <b>jp</b>, en minúsculas cuando acompaña al logo y «JP» en mayúsculas dentro de un texto corrido.</p></div>
+      <div class="bloque"><h2>Qué representa</h2><p>Una sola persona y tres oficios: fotografía, software y diseño gráfico. El logo no ilustra ninguno en particular para poder firmar los tres.</p></div>
+      <div class="bloque"><h2>Carácter</h2><p>Simple, preciso y cálido. El azul da seriedad; el ámbar, energía.</p></div>
+    </div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 02 Construcción -->
+<section class="pagina">
+  <div class="seccion">02 · Construcción</div>
+  <h1>Todo sale del grosor del trazo.</h1>
+  <p class="bajada" style="margin-bottom:9mm">La unidad <b>x</b> es el grosor del trazo. Las demás medidas son múltiplos de x.</p>
+  <div class="fila" style="gap:24mm">
+    <div style="position:relative;width:140mm;height:126mm;flex:none">
+      <div class="plano" style="position:absolute;left:16mm;top:6mm">
+        <div class="guia" style="top:30.6mm"><span>altura de x</span></div>
+        <div class="guia" style="top:88.2mm"><span>línea de base</span></div>
+        <img src="logos/jp-azul.svg" alt="">
+        <div class="cota h" style="left:0;width:115.2mm;top:-7mm"><span>6,9 x</span></div>
+        <div class="cota h" style="left:57.6mm;width:16.8mm;top:114mm"><span>x</span></div>
+        <div class="cota v" style="left:120mm;top:0;height:112.2mm"><span>6,7 x</span></div>
+        <div class="cota v" style="left:-13mm;top:30.6mm;height:57.6mm"><span>3,4 x</span></div>
+        <div class="cota v" style="left:-13mm;top:88.2mm;height:24mm"><span>1,4 x</span></div>
+        <div class="cota h" style="left:29.4mm;width:20.4mm;top:-2.5mm;height:2mm;font-size:6pt"><span style="background:none;top:-3.2mm;position:absolute">1,2 x</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <h2>Medidas</h2>
+      <table class="medidas">
+        <tr><td>Grosor del trazo</td><td>x</td></tr>
+        <tr><td>Ancho total</td><td>6,9 x</td></tr>
+        <tr><td>Alto total, del punto a la base de la p</td><td>6,7 x</td></tr>
+        <tr><td>Altura de las letras (altura de x)</td><td>3,4 x</td></tr>
+        <tr><td>Descendente de la j y de la p</td><td>1,4 x</td></tr>
+        <tr><td>Diámetro del punto</td><td>1,2 x</td></tr>
+        <tr><td>Separación entre el punto y la j</td><td>0,6 x</td></tr>
+        <tr><td>Separación entre la j y la p</td><td>0,6 x</td></tr>
+      </table>
+      <p class="gris chico" style="margin-top:5mm">El punto es apenas más ancho que el trazo, para que se lea como un elemento propio y no como parte de la letra. La j y la p bajan hasta la misma línea.</p>
+      <p class="gris chico">El logo se usa siempre desde los archivos vectoriales: no se vuelve a escribir con una tipografía.</p>
+    </div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 03 Versiones -->
+<section class="pagina">
+  <div class="seccion">03 · Versiones de color</div>
+  <h1>Azul, ámbar, blanco y negro.</h1>
+  <p class="bajada">El logo existe en cuatro colores de letra. En todos el punto contrasta con las letras: ámbar cuando las letras son azules, blancas o negras; blanco cuando las letras son ámbar.</p>
+  <div class="fila" style="gap:6mm">
+    <div class="col">
+      <div class="lienzo f-blanco" style="height:96mm"><img src="logos/jp-azul.svg" alt="" style="height:50mm"></div>
+      <h2 style="margin-top:4mm">Azul · principal</h2>
+      <p class="chico gris">Letras azules y punto ámbar. Para fondos blancos y claros. Es la versión de referencia.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo f-azul" style="height:96mm"><img src="logos/jp-ambar.svg" alt="" style="height:50mm"></div>
+      <h2 style="margin-top:4mm">Ámbar</h2>
+      <p class="chico gris">Letras ámbar y punto blanco. Para fondo azul o negro, cuando se busca la versión más llamativa.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo f-negro" style="height:96mm"><img src="logos/jp-blanco.svg" alt="" style="height:50mm"></div>
+      <h2 style="margin-top:4mm">Blanco</h2>
+      <p class="chico gris">Letras blancas y punto ámbar. Para fondo azul, negro o sobre fotografías oscuras.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo f-papel" style="height:96mm"><img src="logos/jp-negro.svg" alt="" style="height:50mm"></div>
+      <h2 style="margin-top:4mm">Negro</h2>
+      <p class="chico gris">Letras negras y punto ámbar. Para fondos claros cuando el azul no combina con la pieza.</p>
+    </div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 04 Combinaciones -->
+<section class="pagina">
+  <div class="seccion">04 · Combinaciones</div>
+  <h1>Cuatro colores, diez maneras de usarlos.</h1>
+  <p class="bajada" style="margin-bottom:5mm">Estas son las combinaciones aprobadas de fondo, letras y punto. La regla: letras y fondo siempre con mucho contraste, y el punto nunca del color del fondo.</p>
+  <div class="combos">
+    <div><div class="lienzo f-blanco"><img src="logos/jp-azul.svg" alt=""></div><p><b>Blanco</b>Letras azul · punto ámbar</p></div>
+    <div><div class="lienzo f-blanco"><img src="logos/jp-negro.svg" alt=""></div><p><b>Blanco</b>Letras negro · punto ámbar</p></div>
+    <div><div class="lienzo f-azul"><img src="logos/jp-blanco.svg" alt=""></div><p><b>Azul</b>Letras blanco · punto ámbar</p></div>
+    <div><div class="lienzo f-azul"><img src="logos/jp-ambar.svg" alt=""></div><p><b>Azul</b>Letras ámbar · punto blanco</p></div>
+    <div><div class="lienzo f-negro"><img src="logos/jp-blanco.svg" alt=""></div><p><b>Negro</b>Letras blanco · punto ámbar</p></div>
+    <div><div class="lienzo f-negro"><img src="logos/jp-ambar.svg" alt=""></div><p><b>Negro</b>Letras ámbar · punto blanco</p></div>
+    <div><div class="lienzo f-negro"><img src="logos/jp-ambar-punto-azul.svg" alt=""></div><p><b>Negro</b>Letras ámbar · punto azul</p></div>
+    <div><div class="lienzo f-ambar"><img src="logos/jp-azul-punto-blanco.svg" alt=""></div><p><b>Ámbar</b>Letras azul · punto blanco</p></div>
+    <div><div class="lienzo f-ambar"><img src="logos/jp-negro-punto-blanco.svg" alt=""></div><p><b>Ámbar</b>Letras negro · punto blanco</p></div>
+    <div><div class="lienzo f-papel"><img src="logos/jp-azul.svg" alt=""></div><p><b>Gris claro</b>Letras azul · punto ámbar</p></div>
+  </div>
+  <h2 style="margin:4mm 0 2mm">A una tinta</h2>
+  <div class="fila" style="gap:5mm">
+    <div class="lienzo f-blanco col" style="height:19mm"><img src="logos/jp-mono-azul.svg" alt="" style="height:12mm"></div>
+    <div class="lienzo f-blanco col" style="height:19mm"><img src="logos/jp-mono-negro.svg" alt="" style="height:12mm"></div>
+    <div class="lienzo f-negro col" style="height:19mm"><img src="logos/jp-mono-blanco.svg" alt="" style="height:12mm"></div>
+    <div class="lienzo f-azul col" style="height:19mm"><img src="logos/jp-mono-ambar.svg" alt="" style="height:12mm"></div>
+    <p class="gris chico col" style="margin:0;align-self:center;flex:1.6">Para sellos, grabado, bordado o impresión a un color: letras y punto del mismo tono.</p>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 05 Ícono -->
+<section class="pagina">
+  <div class="seccion">05 · Ícono y favicon</div>
+  <h1>El logo dentro de un cuadrado.</h1>
+  <p class="bajada">Para avatares, íconos de aplicación y la pestaña del navegador, el logo va centrado en un cuadrado de esquinas redondeadas.</p>
+  <div class="fila" style="gap:7mm">
+    <div class="col"><div class="lienzo f-papel" style="height:66mm"><img src="logos/jp-icono-azul.svg" alt="" style="height:44mm"></div><h2 style="margin-top:3.5mm">Azul · principal</h2><p class="chico gris">Letras blancas y punto ámbar. Es el favicon del sitio.</p></div>
+    <div class="col"><div class="lienzo f-papel" style="height:66mm"><img src="logos/jp-icono-ambar.svg" alt="" style="height:44mm"></div><h2 style="margin-top:3.5mm">Ámbar</h2><p class="chico gris">Letras azules y punto blanco. Para destacar en redes.</p></div>
+    <div class="col"><div class="lienzo f-papel" style="height:66mm"><img src="logos/jp-icono-negro.svg" alt="" style="height:44mm"></div><h2 style="margin-top:3.5mm">Negro</h2><p class="chico gris">Letras blancas y punto ámbar. Para perfiles de fotografía.</p></div>
+    <div class="col"><div class="lienzo f-negro" style="height:66mm"><img src="logos/jp-icono-blanco.svg" alt="" style="height:44mm"></div><h2 style="margin-top:3.5mm">Blanco</h2><p class="chico gris">Letras azules y punto ámbar. Sobre fondos oscuros.</p></div>
+  </div>
+  <div class="fila" style="margin-top:5mm;align-items:center">
+    <div class="col"><h2>Construcción</h2><p class="chico gris">El logo ocupa el 72 % del lado y va centrado. El radio de las esquinas es el 22 % del lado. En un círculo —avatares de redes— se usa el mismo cuadrado y se deja que la plataforma lo recorte.</p></div>
+    <div class="col">
+      <div class="pestana"><div><img src="logos/jp-icono-azul.svg" alt="">Portfolio</div></div>
+      <div style="background:#fff;border:0.3mm solid #dfe3ea;border-top:0;height:7mm;border-radius:0 0 3mm 3mm"></div>
+    </div>
+    <div class="col" style="display:flex;align-items:flex-end;gap:5mm;font-size:6.8pt;color:var(--gris);text-align:center">
+      <div><img src="logos/jp-icono-azul.svg" alt="" style="height:16mm;margin:0 auto 1.5mm">180 px</div>
+      <div><img src="logos/jp-icono-azul.svg" alt="" style="height:10mm;margin:0 auto 1.5mm">48 px</div>
+      <div><img src="logos/jp-icono-azul.svg" alt="" style="height:6.8mm;margin:0 auto 1.5mm">32 px</div>
+      <div><img src="logos/jp-icono-azul.svg" alt="" style="height:4.2mm;margin:0 auto 1.5mm">16 px</div>
+    </div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 06 Resguardo -->
+<section class="pagina">
+  <div class="seccion">06 · Resguardo y tamaños</div>
+  <h1>Un punto de aire alrededor.</h1>
+  <p class="bajada">El área de resguardo se mide con el propio punto del logo.</p>
+  <div class="fila" style="gap:16mm">
+    <div style="position:relative;width:118mm;height:118mm;flex:none;background:#fff;border:0.3mm solid var(--linea);border-radius:4mm">
+      <div style="position:absolute;left:17mm;top:18.2mm;width:84mm;height:81.6mm;border:0.3mm dashed var(--azul)"></div>
+      <img src="logos/jp-azul.svg" alt="" style="position:absolute;left:29mm;top:30.2mm;width:60mm">
+      <div style="position:absolute;left:17mm;top:18.2mm;width:12mm;height:12mm;border-radius:50%;background:rgba(255,176,0,.35);border:0.25mm solid var(--ambar)"></div>
+      <div style="position:absolute;left:89mm;top:87.8mm;width:12mm;height:12mm;border-radius:50%;background:rgba(255,176,0,.35);border:0.25mm solid var(--ambar)"></div>
+    </div>
+    <div class="col">
+      <div class="bloque"><h2>Área de resguardo</h2><p>Alrededor del logo se deja libre, como mínimo, el diámetro del punto (1,2 x) en los cuatro lados. Dentro de esa zona no van textos, bordes ni otros logos.</p></div>
+      <div class="bloque"><h2>Tamaños mínimos</h2>
+        <p>· Logo en pantalla: <b>24 px</b> de alto.<br>· Logo impreso: <b>8 mm</b> de alto.<br>· Ícono: <b>16 px</b> de lado.</p>
+        <p class="gris chico">Por debajo de esos tamaños el punto se pega a la j. Si el espacio es menor, se usa el ícono.</p>
+      </div>
+      <div style="background:#fff;border:0.3mm solid var(--linea);border-radius:4mm;display:flex;align-items:flex-end;justify-content:space-around;padding:6mm 6mm 4mm;text-align:center;font-size:7pt;color:var(--gris)">
+        <div><img src="logos/jp-azul.svg" alt="" style="height:30mm;margin:0 auto 2mm">Destacado</div>
+        <div><img src="logos/jp-azul.svg" alt="" style="height:18mm;margin:0 auto 2mm">Uso general</div>
+        <div><img src="logos/jp-azul.svg" alt="" style="height:10mm;margin:0 auto 2mm">Firma</div>
+        <div><img src="logos/jp-azul.svg" alt="" style="height:6.35mm;margin:0 auto 2mm">Mínimo · 24 px</div>
+        <div><img src="logos/jp-icono-azul.svg" alt="" style="height:4.2mm;margin:0 auto 2mm">Ícono · 16 px</div>
+      </div>
+    </div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 07 Color -->
+<section class="pagina">
+  <div class="seccion">07 · Color</div>
+  <h1>Azul para decir, ámbar para señalar.</h1>
+  <div class="fila" style="gap:6mm;margin-top:6mm">
+    <div class="muestra col"><div class="tono" style="background:#1e40af;color:#fff">Azul jp</div><div class="dato"><b>#1E40AF</b>RGB 30, 64, 175 · CMYK 83, 63, 0, 31<br>Color principal: letras, títulos y fondos.</div></div>
+    <div class="muestra col"><div class="tono" style="background:#ffb000;color:#0e1116">Ámbar</div><div class="dato"><b>#FFB000</b>RGB 255, 176, 0 · CMYK 0, 31, 100, 0<br>Acento: el punto, destacados y botones.</div></div>
+    <div class="muestra col"><div class="tono" style="background:#0e1116;color:#fff">Negro</div><div class="dato"><b>#0E1116</b>RGB 14, 17, 22 · CMYK 36, 23, 0, 91<br>Textos y fondos oscuros.</div></div>
+    <div class="muestra col"><div class="tono" style="background:#fff;color:#0e1116;border-bottom:0.3mm solid var(--linea)">Blanco</div><div class="dato"><b>#FFFFFF</b>RGB 255, 255, 255 · CMYK 0, 0, 0, 0<br>Fondos y letras sobre color.</div></div>
+  </div>
+  <div class="fila" style="margin-top:7mm;gap:12mm">
+    <div class="col">
+      <h2>Proporción de uso</h2>
+      <div class="proporcion" style="margin-top:2mm">
+        <div style="flex:55;background:#fff">Blanco</div><div style="flex:25;background:#1e40af;color:#fff">Azul</div><div style="flex:12;background:#0e1116;color:#fff">Negro</div><div style="flex:8;background:#ffb000"></div>
+      </div>
+      <p class="gris chico" style="margin-top:3mm">En una pieza típica el ámbar ocupa menos de una décima parte: funciona porque es poco. Un fondo entero en ámbar se reserva para piezas especiales.</p>
+    </div>
+    <div class="col">
+      <h2>Contraste</h2>
+      <p class="chico gris">Blanco sobre azul y negro sobre ámbar son legibles en cualquier tamaño. El ámbar sobre blanco no alcanza para texto: sobre fondos claros se usa solo en el punto, en fondos de botones o en detalles gruesos.</p>
+      <p class="chico gris">Los valores CMYK son una conversión de referencia; para impresos importantes conviene pedir una prueba de color.</p>
+    </div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 08 Tipografía -->
+<section class="pagina">
+  <div class="seccion">08 · Tipografía</div>
+  <h1>Poppins, tan geométrica como el logo.</h1>
+  <div class="fila" style="gap:14mm;margin-top:6mm">
+    <div class="col">
+      <div class="fila" style="gap:8mm;align-items:center;margin-bottom:6mm">
+        <div class="aa" style="width:40mm;color:var(--azul)">Aa</div>
+        <div class="col"><h2>Poppins</h2>
+          <p class="abc" style="font-weight:700">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</p>
+          <p class="abc">abcdefghijklmnñopqrstuvwxyz<br>0123456789 · $ % — « »</p></div>
+      </div>
+      <div class="fila" style="gap:6mm;margin-bottom:6mm">
+        <div class="col" style="font-weight:300"><div style="font-size:20pt">jp</div><span class="chico gris">Light 300</span></div>
+        <div class="col" style="font-weight:400"><div style="font-size:20pt">jp</div><span class="chico gris">Regular 400</span></div>
+        <div class="col" style="font-weight:500"><div style="font-size:20pt">jp</div><span class="chico gris">Medium 500</span></div>
+        <div class="col" style="font-weight:600"><div style="font-size:20pt">jp</div><span class="chico gris">Semibold 600</span></div>
+        <div class="col" style="font-weight:700"><div style="font-size:20pt">jp</div><span class="chico gris">Bold 700</span></div>
+      </div>
+      <p class="gris chico">Poppins comparte con el logo los círculos perfectos y el trazo parejo. Es de uso libre y se descarga de Google Fonts. Cuando no está disponible —un correo, un documento compartido— se reemplaza por la tipografía sin serifas del sistema.</p>
+    </div>
+    <div class="col">
+      <h2>Jerarquía</h2>
+      <table class="escala">
+        <tr><td style="font-size:18pt;font-weight:700;letter-spacing:-0.02em;white-space:nowrap">Fotografía de eventos</td><td>Títulos · Bold, −2 %</td></tr>
+        <tr><td style="font-size:13pt;font-weight:600;color:var(--azul)">Street Car Meet 2026</td><td>Subtítulos · Semibold, azul</td></tr>
+        <tr><td style="font-size:10pt">Cobertura completa, edición y entrega digital.</td><td>Texto · Regular</td></tr>
+        <tr><td style="font-size:8.5pt;color:var(--gris)">Entrega en 7 días hábiles.</td><td>Aclaraciones · Regular, gris</td></tr>
+        <tr><td style="font-size:7.5pt;font-weight:600;letter-spacing:.14em">FOTOGRAFÍA · SOFTWARE · DISEÑO</td><td>Rótulos · Semibold, mayúsculas, +14 %</td></tr>
+        <tr><td><span style="display:inline-block;background:var(--ambar);font-weight:600;font-size:9pt;padding:1.6mm 5mm;border-radius:99mm">Ver trabajos</span></td><td>Botón · Semibold, negro sobre ámbar</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 09 Logo con descriptor -->
+<section class="pagina">
+  <div class="seccion">09 · Logo con descriptor</div>
+  <h1>El logo y los tres oficios.</h1>
+  <p class="bajada">Cuando hace falta decir a qué se dedica la marca, el descriptor acompaña al logo en una de estas dos disposiciones.</p>
+  <div class="fila">
+    <div class="col">
+      <div class="lienzo f-blanco" style="height:80mm;gap:7mm">
+        <img src="logos/jp-azul.svg" alt="" style="height:30mm">
+        <div style="border-left:0.4mm solid var(--linea);padding-left:7mm;font-size:12pt;font-weight:500;line-height:1.5">Fotografía<br>Software<br>Diseño gráfico</div>
+      </div>
+      <h2 style="margin-top:4mm">Horizontal</h2>
+      <p class="chico gris">El descriptor a la derecha, en tres líneas, separado por una línea fina. La altura del bloque de texto coincide con la altura de las letras del logo, sin contar el punto.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo f-azul" style="height:80mm;flex-direction:column;gap:5mm">
+        <img src="logos/jp-blanco.svg" alt="" style="height:30mm">
+        <div style="color:#fff;font-size:7.5pt;font-weight:600;letter-spacing:.16em">FOTOGRAFÍA · SOFTWARE · DISEÑO GRÁFICO</div>
+      </div>
+      <h2 style="margin-top:4mm">Vertical</h2>
+      <p class="chico gris">El descriptor debajo, en una línea, en mayúsculas con interletra abierta. Se separa del logo por el diámetro del punto.</p>
+    </div>
+  </div>
+  <div class="fila" style="margin-top:5mm">
+    <div class="col"><h2>Un solo oficio</h2><p class="chico gris">En una pieza de un área específica el descriptor puede nombrar solo esa: «Fotografía», «Software» o «Diseño gráfico».</p></div>
+    <div class="col"><h2>Tipografía</h2><p class="chico gris">Siempre Poppins: Medium en la disposición horizontal, Semibold en mayúsculas en la vertical.</p></div>
+    <div class="col"><h2>Color</h2><p class="chico gris">El descriptor toma el color de las letras del logo o el negro; nunca el ámbar.</p></div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 10 Aplicaciones -->
+<section class="pagina">
+  <div class="seccion">10 · Aplicaciones</div>
+  <h1>La marca en uso.</h1>
+  <div class="fila" style="margin-top:6mm;gap:10mm">
+    <div style="width:118mm;flex:none">
+      <div style="position:relative;height:79mm;border-radius:3mm;overflow:hidden;background:url('../../assets/img/fotografia/naturaleza/007.jpg') center/cover">
+        <img src="logos/jp-blanco.svg" alt="" style="position:absolute;right:6mm;bottom:6mm;height:11mm">
+      </div>
+      <h2 style="margin-top:3.5mm">Firma en fotografías</h2>
+      <p class="chico gris">Logo blanco con punto ámbar, abajo a la derecha, a una distancia del borde igual a su propio alto. Sobre fotos muy claras se usa el negro.</p>
+    </div>
+    <div class="col">
+      <div class="fila" style="gap:6mm">
+        <div class="tarjeta-p f-azul lienzo" style="flex:none"><img src="logos/jp-blanco.svg" alt="" style="height:16mm"></div>
+        <div class="tarjeta-p" style="flex:none;background:#fff;padding:5mm;display:flex;flex-direction:column;justify-content:space-between">
+          <img src="logos/jp-azul.svg" alt="" style="height:8mm;align-self:flex-start">
+          <div><div style="height:2mm;width:28mm;background:#0e1116;border-radius:1mm;margin-bottom:2mm"></div><div style="height:1.3mm;width:38mm;background:#c9c7bf;border-radius:1mm;margin-bottom:1.4mm"></div><div style="height:1.4mm;width:30mm;background:#c9c7bf;border-radius:1mm"></div></div>
+        </div>
+      </div>
+      <h2 style="margin-top:3.5mm">Tarjeta personal</h2>
+      <p class="chico gris">Frente azul con el logo blanco centrado. Dorso blanco con el logo chico arriba a la izquierda y los datos abajo.</p>
+      <div class="fila" style="gap:8mm;margin-top:5mm;align-items:center">
+        <div style="display:flex;gap:4mm;flex:none">
+          <img src="logos/jp-icono-azul.svg" alt="" style="height:19mm;border-radius:50%">
+          <img src="logos/jp-icono-ambar.svg" alt="" style="height:19mm;border-radius:50%">
+          <img src="logos/jp-icono-negro.svg" alt="" style="height:19mm;border-radius:50%">
+        </div>
+        <div><h2>Avatares</h2><p class="chico gris" style="margin:0">El ícono recortado en círculo. Un color por red o por oficio, siempre con el mismo dibujo.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- 11 Usos incorrectos -->
+<section class="pagina">
+  <div class="seccion">11 · Usos incorrectos</div>
+  <h1>Lo que no se hace con el logo.</h1>
+  <div class="errores" style="margin-top:5mm">
+    <div><div class="lienzo f-blanco"><img src="logos/_error-color.svg" alt=""></div><p>No usar colores fuera de la paleta.</p></div>
+    <div><div class="lienzo f-blanco"><img src="logos/jp-azul.svg" alt="" style="transform:scaleX(1.6)"></div><p>No estirar ni deformar.</p></div>
+    <div><div class="lienzo f-blanco"><img src="logos/jp-azul.svg" alt="" style="transform:rotate(-16deg)"></div><p>No rotar ni inclinar.</p></div>
+    <div><div class="lienzo f-ambar"><img src="logos/jp-azul.svg" alt=""></div><p>No dejar el punto del color del fondo: sobre ámbar, el punto va en blanco.</p></div>
+    <div><div class="lienzo f-azul"><img src="logos/jp-negro.svg" alt=""></div><p>No combinar letras y fondo de poco contraste.</p></div>
+    <div><div class="lienzo f-blanco"><img src="logos/jp-azul.svg" alt="" style="filter:drop-shadow(2.5mm 2.5mm 1.5mm rgba(0,0,0,.45))"></div><p>No agregar sombras, contornos ni degradés.</p></div>
+  </div>
+  <div class="pie"><span>jp. Manual de marca</span></div>
+</section>
+
+<!-- Cierre -->
+<section class="pagina azul" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+  <img src="logos/jp-blanco.svg" alt="" style="height:62mm;margin-bottom:9mm">
+  <div style="font-size:8pt;font-weight:600;letter-spacing:.16em">FOTOGRAFÍA · SOFTWARE · DISEÑO GRÁFICO</div>
+  <p style="margin-top:4mm;opacity:.8">Manual de marca · Versión 1.0 · Octubre 2026</p>
+</section>
+
+</body>
+</html>

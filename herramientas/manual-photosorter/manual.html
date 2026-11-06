@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PhotoSorter — Manual de marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 210mm; margin: 0; }
+
+  :root {
+    --tinta: #07111f;
+    --panel: #0b1626;
+    --tarjeta: #101d2f;
+    --borde-app: #294563;
+    --acento: #6195e5;
+    --claro: #f2f5f8;
+    --secundario: #b8c2cf;
+    --magenta: #be0b5f;
+    --error: #e45b62;
+    --gris: #56657a;
+    --linea: #dbe2ea;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: "Inter", "Segoe UI", sans-serif; font-size: 10.5pt; line-height: 1.5; color: var(--tinta); counter-reset: pagina; }
+  img { display: block; }
+  p { margin: 0 0 2.5mm; }
+  b, strong { font-weight: 700; }
+
+  .pagina {
+    position: relative;
+    width: 297mm;
+    height: 210mm;
+    padding: 17mm 20mm 16mm;
+    background: var(--claro);
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    counter-increment: pagina;
+  }
+  .pagina:last-child { page-break-after: auto; break-after: auto; }
+  .pagina.oscura { background: var(--tinta); color: var(--claro); }
+  .pagina.oscura .bajada, .pagina.oscura .pie, .pagina.oscura .gris { color: var(--secundario); }
+
+  .seccion { font-size: 7.5pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--magenta); margin-bottom: 3mm; }
+  .oscura .seccion { color: #ec4f96; }
+  h1 { font-size: 30pt; line-height: 1.1; font-weight: 800; letter-spacing: -0.025em; margin: 0 0 4mm; }
+  h2 { font-size: 11.5pt; font-weight: 700; margin: 0 0 1.5mm; }
+  .bajada { max-width: 190mm; color: var(--gris); font-size: 11.5pt; margin-bottom: 7mm; }
+  .gris { color: var(--gris); }
+  .chico { font-size: 9pt; }
+
+  .pie { position: absolute; left: 20mm; right: 20mm; bottom: 9mm; display: flex; justify-content: space-between; font-size: 7pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
+  .pie::after { content: counter(pagina, decimal-leading-zero); }
+
+  .fila { display: flex; gap: 8mm; }
+  .col { flex: 1; min-width: 0; }
+  .tarjeta { background: #fff; border: 0.3mm solid var(--linea); border-radius: 4mm; }
+  .lienzo { display: flex; align-items: center; justify-content: center; border-radius: 4mm; }
+  .lienzo.blanco { background: #fff; border: 0.3mm solid var(--linea); }
+  .lienzo.tinta { background: var(--tinta); }
+  .bloque { margin-bottom: 6mm; }
+
+  /* Nombre escrito */
+  .nombre { font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; }
+  .nombre span { color: var(--acento); }
+
+  /* Portada */
+  .portada { display: flex; padding: 0; }
+  .portada .izq { width: 118mm; background: var(--panel); display: flex; align-items: center; justify-content: center; }
+  .portada .der { flex: 1; padding: 0 22mm; display: flex; flex-direction: column; justify-content: center; }
+  .portada .nombre { font-size: 52pt; line-height: 1; margin: 4mm 0 5mm; }
+  .portada .lema { font-size: 14pt; color: var(--secundario); max-width: 110mm; }
+  .portada .version { position: absolute; right: 22mm; bottom: 14mm; left: 140mm; font-size: 7.5pt; font-weight: 700; letter-spacing: 0.14em; color: var(--secundario); border-top: 0.3mm solid var(--borde-app); padding-top: 4mm; display: flex; justify-content: space-between; }
+
+  /* Construcción */
+  .plano { position: relative; width: 70.2mm; height: 121.5mm; }
+  .plano .reticula { position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(97,149,229,.38) 0.2mm, transparent 0.2mm), linear-gradient(to bottom, rgba(97,149,229,.38) 0.2mm, transparent 0.2mm); background-size: 5.4mm 5.4mm; border-right: 0.2mm solid rgba(97,149,229,.38); border-bottom: 0.2mm solid rgba(97,149,229,.38); }
+  .plano img { position: absolute; left: 0; top: 0; width: 70.2mm; height: 121.5mm; }
+  .cota { position: absolute; font-size: 6.5pt; font-weight: 700; color: var(--acento); letter-spacing: 0.04em; white-space: nowrap; }
+  .cota.h { height: 3mm; border-left: 0.25mm solid var(--acento); border-right: 0.25mm solid var(--acento); display: flex; align-items: center; justify-content: center; }
+  .cota.h::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 0.25mm solid var(--acento); }
+  .cota.h span, .cota.v span { position: relative; background: var(--claro); padding: 0 1mm; }
+  .cota.v { width: 3mm; border-top: 0.25mm solid var(--acento); border-bottom: 0.25mm solid var(--acento); display: flex; align-items: center; justify-content: center; }
+  .cota.v::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; border-left: 0.25mm solid var(--acento); }
+  .cota.v span { writing-mode: vertical-rl; transform: rotate(180deg); padding: 1mm 0; }
+
+  table.medidas { border-collapse: collapse; width: 100%; }
+  table.medidas td { padding: 2mm 0; border-bottom: 0.25mm solid var(--linea); vertical-align: top; }
+  table.medidas td:last-child { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 4mm; }
+
+  /* Color */
+  .muestras { display: grid; gap: 5mm; }
+  .muestra { background: #fff; border: 0.3mm solid var(--linea); border-radius: 3mm; overflow: hidden; }
+  .muestra .tono { height: 27mm; }
+  .muestra.baja .tono { height: 14mm; }
+  .muestra .dato { padding: 2.5mm 3mm 3mm; font-size: 7.5pt; line-height: 1.4; color: var(--gris); }
+  .muestra .dato b { display: block; font-size: 9.5pt; color: var(--tinta); }
+
+  /* Tipografía */
+  .aa { font-size: 60pt; font-weight: 800; line-height: 1; letter-spacing: -0.03em; margin-bottom: 4mm; }
+  .abc { font-size: 11pt; line-height: 1.55; }
+  table.escala { border-collapse: collapse; width: 100%; }
+  table.escala td { padding: 2.2mm 0; border-bottom: 0.25mm solid var(--linea); vertical-align: baseline; }
+  table.escala td:last-child { text-align: right; font-size: 7.5pt; padding-left: 3mm; color: var(--gris); white-space: nowrap; }
+
+  /* Interfaz */
+  .ui { background: var(--tinta); border-radius: 4mm; padding: 6mm; color: var(--claro); }
+  .ui .panel { background: var(--panel); border: 0.3mm solid var(--borde-app); border-radius: 2.5mm; padding: 4mm; }
+  .ui .titulo { color: var(--acento); font-weight: 700; font-size: 9pt; margin-bottom: 3mm; }
+  .boton { display: inline-block; padding: 2.2mm 6mm; border-radius: 2.2mm; font-size: 8.5pt; font-weight: 500; background: var(--acento); color: #fff; }
+  .boton.hover { background: #4f7fce; }
+  .boton.error { background: var(--error); }
+  .campo { border: 0.3mm solid var(--borde-app); background: var(--tarjeta); border-radius: 2mm; padding: 2mm 3mm; font-size: 8.5pt; color: var(--secundario); }
+  .barra { height: 6mm; border-radius: 1.6mm; background: var(--tarjeta); border: 0.3mm solid var(--borde-app); overflow: hidden; }
+  .barra i { display: block; height: 100%; width: 62%; background: linear-gradient(90deg, #f26110, #f48229); }
+  .titulobar { display: flex; align-items: center; background: var(--panel); border-radius: 2.5mm 2.5mm 0 0; overflow: hidden; font-weight: 700; font-size: 9pt; color: var(--claro); }
+  .titulobar img { height: 7mm; margin: 2mm 2.5mm 2mm 4mm; }
+  .titulobar .ctrl { margin-left: auto; display: flex; }
+  .titulobar .ctrl i { width: 11mm; height: 11mm; background: var(--tarjeta); display: flex; align-items: center; justify-content: center; font-style: normal; font-weight: 400; }
+  .titulobar .ctrl i:last-child { background: var(--error); }
+
+  /* Usos incorrectos */
+  .errores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm 8mm; }
+  .errores .lienzo { position: relative; height: 54mm; overflow: hidden; }
+  .errores .lienzo::after { content: "✕"; position: absolute; top: 2.5mm; right: 4mm; color: var(--error); font-size: 11pt; font-weight: 700; }
+  .errores img { height: 42mm; }
+  .errores p { margin: 2mm 0 0; font-size: 9.5pt; }
+</style>
+</head>
+<body>
+
+<!-- 01 Portada -->
+<section class="pagina oscura portada">
+  <div class="izq"><img src="logos/negativo.png" alt="Logo de PhotoSorter" style="height:132mm"></div>
+  <div class="der">
+    <div class="seccion">Manual de marca · v1.0</div>
+    <div class="nombre">Photo<span>Sorter</span></div>
+    <p class="lema">Logo, color, tipografía y uso de la marca dentro y fuera de la aplicación.</p>
+  </div>
+  <div class="version"><span>VERSIÓN 1.0 · OCTUBRE 2026</span><span>ORGANIZACIÓN DE FOTOS RÁPIDA, SIMPLE Y LOCAL</span></div>
+</section>
+
+<!-- 02 La marca -->
+<section class="pagina">
+  <div class="seccion">01 · La marca</div>
+  <h1>Una foto colgada de un broche.</h1>
+  <p class="bajada">El logo de PhotoSorter es una copia fotográfica colgada a secar: un marco doble, las iniciales «PS» y un broche que la sostiene. El broche es el único elemento con color y lo que hace reconocible a la marca.</p>
+  <div class="fila">
+    <div class="lienzo blanco" style="width:84mm;height:124mm;flex:none"><img src="logos/positivo.png" alt="" style="height:102mm"></div>
+    <div class="col">
+      <div class="bloque"><h2>El monograma</h2><p>Las iniciales «PS» en mayúsculas, de trazo muy grueso y contorno ondulado, como una imagen que todavía se está revelando. Van en negro sobre fondos claros y en claro sobre fondos oscuros.</p></div>
+      <div class="bloque"><h2>El marco</h2><p>Dos rectángulos concéntricos de línea fina, en formato vertical, que representan el borde de la copia en papel. El marco siempre acompaña al monograma: no se usan las letras solas.</p></div>
+    </div>
+    <div class="col">
+      <div class="bloque"><h2>El broche</h2><p>Un broche de ropa en magenta, centrado sobre el borde superior del marco. Mantiene su color en todas las versiones a color, sea cual sea el fondo.</p></div>
+      <div class="bloque"><h2>El nombre</h2><p>Se escribe <b>PhotoSorter</b>: una sola palabra, con P y S mayúsculas. El logo no incluye el nombre; cuando hace falta nombrar el producto, el nombre va en texto junto al logo o al ícono.</p></div>
+      <div class="bloque"><h2>Proporciones</h2><p>El conjunto mide 13 de ancho por 22,5 de alto, tomando como unidad el ancho del broche. Esa unidad, <b>x</b>, es la base de la construcción y del área de resguardo.</p></div>
+    </div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 03 Construcción -->
+<section class="pagina">
+  <div class="seccion">02 · Construcción</div>
+  <h1>Todo se mide en broches.</h1>
+  <p class="bajada" style="margin-bottom:5mm">La unidad <b>x</b> es el ancho del broche. La retícula muestra el logo sobre una grilla de 13 × 22,5 x.</p>
+  <div class="fila" style="gap:22mm">
+    <div style="position:relative;width:96mm;height:128mm;flex:none">
+      <div class="plano" style="left:14mm;top:6mm;position:absolute">
+        <div class="reticula"></div>
+        <img src="logos/positivo.png" alt="">
+        <div class="cota h" style="left:0;width:70.2mm;top:-6mm"><span>13 x</span></div>
+        <div class="cota h" style="left:32.06mm;width:5.4mm;top:28mm"><span style="background:#fff0">x</span></div>
+        <div class="cota v" style="left:-7mm;top:0;height:121.5mm"><span>22,5 x</span></div>
+        <div class="cota v" style="left:73.2mm;top:0;height:27mm"><span>5 x</span></div>
+        <div class="cota v" style="left:80mm;top:13.16mm;height:108.34mm"><span>20 x</span></div>
+      </div>
+    </div>
+    <div class="col" style="padding-top:2mm">
+      <h2>Medidas</h2>
+      <table class="medidas">
+        <tr><td>Ancho total del logo</td><td>13 x</td></tr>
+        <tr><td>Alto total, del extremo del broche a la base del marco</td><td>22,5 x</td></tr>
+        <tr><td>Alto del marco exterior</td><td>20 x</td></tr>
+        <tr><td>Alto del broche</td><td>5 x</td></tr>
+        <tr><td>Lo que el broche sobresale por encima del marco</td><td>2,5 x</td></tr>
+        <tr><td>Separación entre el marco exterior y el interior</td><td>0,6 x</td></tr>
+        <tr><td>Grosor de las líneas del marco</td><td>⅛ x</td></tr>
+        <tr><td>Monograma «PS», ancho × alto</td><td>8 × 15 x</td></tr>
+      </table>
+      <p class="gris chico" style="margin-top:5mm">El broche va centrado sobre el eje vertical del marco. El monograma queda centrado en el ancho y apoyado hacia la base, dejando libre la franja superior donde entra el broche.</p>
+      <p class="gris chico">El logo se reproduce siempre a partir de los archivos originales: no se redibuja ni se recompone.</p>
+    </div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 04 Versiones -->
+<section class="pagina">
+  <div class="seccion">03 · Versiones del logo</div>
+  <h1>Cuatro versiones, un solo broche.</h1>
+  <p class="bajada">La versión se elige según el fondo. En las versiones a color el broche conserva siempre el mismo magenta.</p>
+  <div class="fila" style="gap:6mm">
+    <div class="col">
+      <div class="lienzo blanco" style="height:90mm"><img src="logos/positivo.png" alt="" style="height:72mm"></div>
+      <h2 style="margin-top:4mm">Positivo</h2>
+      <p class="chico">Letras negras y marco grafito. Para fondos blancos o claros: documentos, impresos y web en modo claro.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo tinta" style="height:90mm"><img src="logos/negativo.png" alt="" style="height:72mm"></div>
+      <h2 style="margin-top:4mm">Negativo</h2>
+      <p class="chico">Letras y marco en claro. Para fondos oscuros: es la versión que usa la aplicación, cuya interfaz es siempre oscura.</p>
+    </div>
+    <div class="col">
+      <div class="fila" style="gap:0;height:90mm">
+        <div class="lienzo blanco col" style="border-radius:4mm 0 0 4mm;border-right:0"><img src="logos/mono-negro.png" alt="" style="height:46mm"></div>
+        <div class="lienzo col" style="background:#000;border-radius:0 4mm 4mm 0"><img src="logos/mono-blanco.png" alt="" style="height:46mm"></div>
+      </div>
+      <h2 style="margin-top:4mm">Monocromo</h2>
+      <p class="chico">Todo en negro o todo en blanco. Solo cuando no se puede imprimir color: sellos, grabado, una tinta.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo" style="height:90mm;background:#e3e8ee"><img src="logos/icono.png" alt="" style="height:52mm"></div>
+      <h2 style="margin-top:4mm">Ícono de aplicación</h2>
+      <p class="chico">El negativo sobre un cuadrado de tinta con esquinas redondeadas (radio de 22 % del lado, margen de 12 %). Identifica al programa en el escritorio y la barra de tareas.</p>
+    </div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 05 Resguardo y tamaños -->
+<section class="pagina">
+  <div class="seccion">04 · Resguardo y tamaños</div>
+  <h1>Espacio para colgar.</h1>
+  <p class="bajada">El logo necesita aire alrededor para que el marco se lea como un objeto y no se confunda con otros bordes.</p>
+  <div class="fila" style="gap:16mm">
+    <div style="position:relative;width:86mm;height:126mm;flex:none;background:#fff;border:0.3mm solid var(--linea);border-radius:4mm">
+      <div style="position:absolute;left:14mm;top:11mm;width:58mm;height:104mm;border:0.3mm dashed var(--magenta)"></div>
+      <img src="logos/positivo.png" alt="" style="position:absolute;left:21.2mm;top:18.2mm;width:43.6mm">
+      <div style="position:absolute;left:14mm;top:11mm;width:7.2mm;height:7.2mm;background:rgba(190,11,95,.14);border:0.25mm solid var(--magenta);font-size:6pt;font-weight:700;color:var(--magenta);display:flex;align-items:center;justify-content:center">2x</div>
+      <div style="position:absolute;left:64.8mm;top:107.8mm;width:7.2mm;height:7.2mm;background:rgba(190,11,95,.14);border:0.25mm solid var(--magenta);font-size:6pt;font-weight:700;color:var(--magenta);display:flex;align-items:center;justify-content:center">2x</div>
+    </div>
+    <div class="col">
+      <div class="bloque"><h2>Área de resguardo</h2><p>Alrededor del logo se deja libre, como mínimo, una distancia igual a <b>2 x</b>: dos veces el ancho del broche. Dentro de esa zona no van textos, bordes ni otros elementos.</p></div>
+      <div class="bloque"><h2>Tamaños mínimos</h2>
+        <p>Por debajo de estas medidas las líneas del marco dejan de verse:</p>
+        <p>· Logo en pantalla: <b>48 px</b> de alto.<br>· Logo impreso: <b>15 mm</b> de alto.<br>· Ícono de aplicación: <b>16 px</b> de lado.</p>
+        <p class="gris chico">Cuando el espacio es menor al mínimo del logo se usa el ícono de aplicación, que tolera tamaños más chicos gracias a su fondo.</p>
+      </div>
+      <div class="tarjeta" style="display:flex;align-items:flex-end;justify-content:space-around;padding:6mm 6mm 4mm;text-align:center;font-size:6.5pt;color:var(--gris)">
+        <div><img src="logos/positivo.png" alt="" style="height:34mm;margin:0 auto 2mm">Destacado</div>
+        <div><img src="logos/positivo.png" alt="" style="height:20mm;margin:0 auto 2mm">Uso general</div>
+        <div><img src="logos/positivo.png" alt="" style="height:12.7mm;margin:0 auto 2mm">Mínimo · 48 px</div>
+        <div><img src="logos/icono.png" alt="" style="height:12.7mm;margin:0 auto 2mm">Ícono · 48 px</div>
+        <div><img src="logos/icono.png" alt="" style="height:4.2mm;margin:0 auto 2mm">16 px</div>
+      </div>
+    </div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 06 Color -->
+<section class="pagina">
+  <div class="seccion">05 · Color</div>
+  <h1>Tinta, papel y un broche magenta.</h1>
+  <div class="muestras" style="grid-template-columns:repeat(4,1fr);margin-top:5mm">
+    <div class="muestra"><div class="tono" style="background:#be0b5f"></div><div class="dato"><b>Magenta broche</b>#BE0B5F · RGB 190, 11, 95<br>El broche del logo. Uso exclusivo de la marca.</div></div>
+    <div class="muestra"><div class="tono" style="background:#000"></div><div class="dato"><b>Negro</b>#000000 · RGB 0, 0, 0<br>Monograma en positivo.</div></div>
+    <div class="muestra"><div class="tono" style="background:#2a2a2a"></div><div class="dato"><b>Grafito</b>#2A2A2A · RGB 42, 42, 42<br>Líneas del marco en positivo.</div></div>
+    <div class="muestra"><div class="tono" style="background:#f2f5f8;border-bottom:0.3mm solid var(--linea)"></div><div class="dato"><b>Papel</b>#F2F5F8 · RGB 242, 245, 248<br>Monograma y marco en negativo. Texto principal.</div></div>
+  </div>
+  <h2 style="margin:5mm 0 2.5mm">Colores de la interfaz</h2>
+  <div class="muestras" style="grid-template-columns:repeat(5,1fr);gap:3.5mm 5mm">
+    <div class="muestra baja"><div class="tono" style="background:#07111f"></div><div class="dato"><b>Tinta</b>#07111F · RGB 7, 17, 31<br>Fondo de la ventana y del ícono.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#0b1626"></div><div class="dato"><b>Panel</b>#0B1626 · RGB 11, 22, 38<br>Paneles y barra de título.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#101d2f"></div><div class="dato"><b>Tarjeta</b>#101D2F · RGB 16, 29, 47<br>Campos y miniaturas.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#294563"></div><div class="dato"><b>Borde</b>#294563 · RGB 41, 69, 99<br>Contornos de paneles y campos.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#b8c2cf"></div><div class="dato"><b>Texto secundario</b>#B8C2CF · RGB 184, 194, 207<br>Etiquetas y ayudas.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#6195e5"></div><div class="dato"><b>Azul de acción</b>#6195E5 · RGB 97, 149, 229<br>Botones y títulos de panel.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#4f7fce"></div><div class="dato"><b>Azul, al pasar</b>#4F7FCE · RGB 79, 127, 206<br>Botón con el cursor encima.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:linear-gradient(90deg,#f26110,#f48229)"></div><div class="dato"><b>Naranja de avance</b>#F26110 → #F48229<br>Solo en la barra de progreso.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#e45b62"></div><div class="dato"><b>Rojo</b>#E45B62 · RGB 228, 91, 98<br>Errores y botón de cerrar.</div></div>
+    <div class="muestra baja"><div class="tono" style="background:#c94850"></div><div class="dato"><b>Rojo, al pasar</b>#C94850 · RGB 201, 72, 80<br>Cerrar con el cursor encima.</div></div>
+  </div>
+  <p class="gris chico" style="margin-top:3.5mm">El magenta del broche no se usa en botones, textos ni estados de la interfaz: queda reservado al logo. Las acciones usan el azul; el avance, el naranja; los errores, el rojo.</p>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 07 Tipografía -->
+<section class="pagina">
+  <div class="seccion">06 · Tipografía</div>
+  <h1>Inter en la web, Segoe UI en la aplicación.</h1>
+  <div class="fila" style="gap:14mm;margin-top:7mm">
+    <div class="col">
+      <div class="fila" style="gap:8mm;align-items:center;margin-bottom:9mm">
+        <div class="aa" style="margin:0;width:34mm">Aa</div>
+        <div class="col"><h2>Inter</h2>
+          <p class="abc" style="font-weight:700;margin:0">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</p>
+          <p class="abc" style="margin:0">abcdefghijklmnñopqrstuvwxyz<br>0123456789 · % — « »</p></div>
+      </div>
+      <div class="fila" style="gap:8mm;align-items:center;font-family:'Segoe UI',sans-serif">
+        <div class="aa" style="margin:0;width:34mm">Aa</div>
+        <div class="col"><h2>Segoe UI</h2>
+          <p class="abc" style="font-weight:700;margin:0">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</p>
+          <p class="abc" style="margin:0">abcdefghijklmnñopqrstuvwxyz<br>0123456789 · % — « »</p></div>
+      </div>
+      <p class="gris chico" style="margin-top:9mm"><b>Inter</b> es la tipografía del sitio web y de las piezas de comunicación, incluido este manual. <b>Segoe UI</b> es la tipografía de sistema de Windows: la aplicación la usa tal cual viene instalada, sin distribuir fuentes propias. En macOS la aplicación toma la tipografía de sistema equivalente.</p>
+    </div>
+    <div class="col">
+      <h2>Jerarquía</h2>
+      <table class="escala">
+        <tr><td style="font-size:22pt;font-weight:800;letter-spacing:-0.025em">Organizá tus fotos</td><td>Títulos · Extrabold, interletra −2,5 %</td></tr>
+        <tr><td style="font-size:13pt;font-weight:600">Separá, procesá y previsualizá</td><td>Subtítulos · Semibold</td></tr>
+        <tr><td style="font-size:10pt;font-weight:700;color:#3f6fc4">Procesando ahora</td><td>Título de panel · Bold, azul de acción</td></tr>
+        <tr><td style="font-size:9.5pt">Elegí una carpeta con fotografías.</td><td>Texto · Regular</td></tr>
+        <tr><td style="font-size:8pt;color:var(--gris)">Tiempo restante estimado: 00:42</td><td>Ayudas · Regular, secundario</td></tr>
+        <tr><td style="font-size:7pt;font-weight:700;letter-spacing:.14em">SEPARAR FOTOS</td><td>Rótulos · Bold, mayúsculas, +14 %</td></tr>
+      </table>
+      <h2 style="margin-top:7mm">El nombre escrito</h2>
+      <div class="fila" style="gap:5mm">
+        <div class="lienzo tinta col" style="height:27mm"><span class="nombre" style="font-size:22pt;color:#fff">Photo<span>Sorter</span></span></div>
+        <div class="lienzo blanco col" style="height:27mm"><span class="nombre" style="font-size:22pt">PhotoSorter</span></div>
+      </div>
+      <p class="gris chico" style="margin-top:3mm">Semibold, interletra −2 %. Sobre fondo oscuro «Sorter» puede ir en azul de acción; sobre fondo claro el nombre va entero en tinta.</p>
+    </div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 08 Logo con nombre -->
+<section class="pagina">
+  <div class="seccion">07 · Logo con nombre</div>
+  <h1>El ícono primero, el nombre al lado.</h1>
+  <p class="bajada">Cuando el logo aparece junto al nombre —encabezado del sitio, firma, instalador— se usa el ícono de aplicación seguido del nombre escrito.</p>
+  <div class="fila">
+    <div class="col">
+      <div class="lienzo tinta" style="height:76mm;gap:5.5mm">
+        <img src="logos/icono.png" alt="" style="height:22mm;border-radius:22%;box-shadow:0 0 0 0.35mm #294563">
+        <span class="nombre" style="font-size:40pt;color:#fff">Photo<span>Sorter</span></span>
+      </div>
+      <h2 style="margin-top:4mm">Sobre fondo oscuro</h2>
+      <p class="chico">Ícono con un contorno fino en color borde (#294563) para separarlo del fondo. Nombre en blanco, con «Sorter» en azul de acción.</p>
+    </div>
+    <div class="col">
+      <div class="lienzo blanco" style="height:76mm;gap:5.5mm">
+        <img src="logos/icono.png" alt="" style="height:22mm">
+        <span class="nombre" style="font-size:40pt">PhotoSorter</span>
+      </div>
+      <h2 style="margin-top:4mm">Sobre fondo claro</h2>
+      <p class="chico">El mismo ícono, sin contorno. Nombre entero en tinta (#07111F).</p>
+    </div>
+  </div>
+  <div class="fila" style="margin-top:6mm">
+    <div class="col"><h2>Proporción</h2><p class="chico">La altura de las mayúsculas del nombre es la mitad del alto del ícono. Ícono y nombre se alinean por el centro.</p></div>
+    <div class="col"><h2>Separación</h2><p class="chico">Entre el ícono y el nombre se deja un cuarto del lado del ícono. El conjunto respeta el mismo resguardo que el logo.</p></div>
+    <div class="col"><h2>Versión vertical</h2><p class="chico">Si el espacio es angosto, el nombre va centrado debajo del logo completo, a una distancia de 2 x, y nunca más ancho que el marco.</p></div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 09 En la aplicación -->
+<section class="pagina oscura">
+  <div class="seccion">08 · La marca en la aplicación</div>
+  <h1>Siempre en negativo, sobre tinta.</h1>
+  <div class="fila" style="margin-top:7mm;gap:10mm">
+    <div style="width:150mm;flex:none">
+      <img src="../../assets/img/software/photosorter/app.png" alt="Ventana principal de PhotoSorter" style="width:150mm;border-radius:2.5mm;border:0.3mm solid var(--borde-app)">
+      <p class="gris chico" style="margin-top:3mm">Ventana principal: configuración a la izquierda, vista previa y galería a la derecha.</p>
+    </div>
+    <div class="col">
+      <div class="titulobar"><img src="logos/negativo.png" alt="">PhotoSorter<div class="ctrl"><i>–</i><i>□</i><i>✕</i></div></div>
+      <div class="bloque" style="margin-top:4mm"><h2>Barra de título</h2><p class="gris">La ventana dibuja su propia barra, en color panel. El logo en negativo va a la izquierda, seguido del nombre en negrita. El botón de cerrar es el único con color: rojo.</p></div>
+      <div class="bloque"><h2>Galería vacía</h2><p class="gris">Antes de procesar, la galería muestra el logo en negativo como marca de agua, atenuado, para que no compita con las fotos cuando aparecen.</p></div>
+      <div class="bloque"><h2>Ícono</h2><p class="gris">El ejecutable, el instalador y la barra de tareas usan el ícono de aplicación. Es el mismo en Windows y macOS.</p></div>
+      <div class="bloque"><h2>Regla</h2><p class="gris">La interfaz es siempre oscura, así que dentro de la aplicación solo existe la versión negativa. El positivo queda para documentos, impresos y fondos claros.</p></div>
+    </div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 10 Estilo de la interfaz -->
+<section class="pagina">
+  <div class="seccion">09 · Estilo de la interfaz</div>
+  <h1>Paneles oscuros, un color por función.</h1>
+  <div class="fila" style="margin-top:7mm;gap:12mm">
+    <div class="ui" style="width:108mm;flex:none;zoom:1.3">
+      <div class="panel">
+        <div class="titulo">Configuración</div>
+        <div class="fila" style="gap:3mm;align-items:center;margin-bottom:3mm"><span style="font-size:8.5pt">Carpeta:</span><div class="campo col">Elegí una carpeta con fotografías…</div><span class="boton">Examinar…</span></div>
+        <div class="boton" style="display:block;text-align:center;letter-spacing:.04em;margin-bottom:3mm">SEPARAR FOTOS</div>
+        <div style="font-size:8.5pt;margin-bottom:1.5mm">Estado: procesando</div>
+        <div class="barra"><i></i></div>
+        <div class="campo" style="margin-top:3mm;color:var(--claro)">Encontradas: 1240 &nbsp; Procesadas: 769 &nbsp; Errores: 0</div>
+      </div>
+      <div class="fila" style="gap:3mm;margin-top:4mm;align-items:center">
+        <span class="boton">Normal</span><span class="boton hover">Al pasar</span><span class="boton error">Cancelar</span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="bloque"><h2>Paneles</h2><p>Fondo panel sobre fondo tinta, con contorno fino en color borde y esquinas redondeadas. Cada panel lleva su título en azul de acción y negrita.</p></div>
+      <div class="bloque"><h2>Botones</h2><p>Relleno azul de acción con texto blanco; al pasar el cursor, el azul se oscurece. La acción principal ocupa todo el ancho del panel y va en mayúsculas.</p></div>
+      <div class="bloque"><h2>Avance</h2><p>La barra de progreso es el único lugar donde aparece el naranja, en degradé de #F26110 a #F48229. Así el avance se distingue de las acciones.</p></div>
+      <div class="bloque"><h2>Errores</h2><p>El rojo se reserva para errores, cancelar y cerrar. Una foto dañada no detiene el proceso: se cuenta en «Errores» y se informa cuál fue.</p></div>
+    </div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 11 Usos incorrectos -->
+<section class="pagina">
+  <div class="seccion">10 · Usos incorrectos</div>
+  <h1>Lo que no se hace con el logo.</h1>
+  <div class="errores" style="margin-top:5mm">
+    <div><div class="lienzo blanco"><img src="logos/error-broche-verde.png" alt=""></div><p>No cambiar el color del broche.</p></div>
+    <div><div class="lienzo blanco"><img src="logos/positivo.png" alt="" style="transform:scaleX(1.7)"></div><p>No estirar ni deformar.</p></div>
+    <div><div class="lienzo blanco"><img src="logos/positivo.png" alt="" style="transform:rotate(-18deg);height:38mm"></div><p>No rotar ni inclinar: el logo cuelga derecho.</p></div>
+    <div><div class="lienzo tinta"><img src="logos/positivo.png" alt=""></div><p>No usar el positivo sobre fondo oscuro, ni el negativo sobre claro.</p></div>
+    <div><div class="lienzo blanco"><img src="logos/positivo.png" alt="" style="filter:drop-shadow(2mm 2mm 1.2mm rgba(0,0,0,.45))"></div><p>No agregar sombras, contornos ni efectos.</p></div>
+    <div><div class="lienzo" style="background:var(--magenta)"><img src="logos/negativo.png" alt=""></div><p>No apoyarlo sobre un fondo donde el broche se pierde.</p></div>
+  </div>
+  <div class="pie"><span>PhotoSorter. Manual de marca</span></div>
+</section>
+
+<!-- 12 Cierre -->
+<section class="pagina oscura" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+  <img src="logos/negativo.png" alt="" style="height:70mm;margin-bottom:9mm">
+  <div class="nombre" style="font-size:24pt">Photo<span>Sorter</span></div>
+  <p class="gris" style="margin-top:3mm">Manual de marca · Versión 1.0 · Octubre 2026</p>
+</section>
+
+</body>
+</html>

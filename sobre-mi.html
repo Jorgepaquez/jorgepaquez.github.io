@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sobre mí</title>
+  <meta name="description" content="Portfolio de fotografía, software y diseño gráfico.">
+  <script>
+    // Aplica el tema antes de pintar la página para evitar el parpadeo.
+    (function () {
+      var tema;
+      try { tema = localStorage.getItem("tema"); } catch (e) {}
+      if (!tema) tema = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = tema;
+    })();
+  </script>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/styles.css?v=51">
+</head>
+<body data-pagina="sobre-mi">
+  <header class="encabezado" id="encabezado"></header>
+  <main id="contenido">
+    <noscript><p class="contenedor bloque">Este sitio necesita JavaScript para mostrar su contenido.</p></noscript>
+  </main>
+  <footer class="pie" id="pie"></footer>
+
+  <script src="assets/js/data.js?v=51"></script>
+  <script src="assets/js/fotos.js?v=51"></script>
+  <script src="assets/js/main.js?v=51"></script>
+</body>
+</html>
