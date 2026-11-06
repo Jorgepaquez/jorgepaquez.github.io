@@ -502,26 +502,31 @@ window.PORTFOLIO = {
     {
       id: "kakeibo",
       titulo: "Kakeibo",
-      resumen: "Aplicación de escritorio para registrar y analizar la economía del hogar, en pesos y en dólares.",
+      resumen: "App para Windows y Android que registra y analiza la economía del hogar, en pesos y en dólares, con los datos sincronizados entre la computadora y el celular.",
       descripcion: [
-        "Kakeibo es una app de escritorio para Windows que lleva los ingresos y egresos del hogar: movimientos, gastos fijos, tarjetas de crédito con cuotas, préstamos e inversiones, con un resumen general y un calendario de vencimientos.",
-        "Los pesos y los dólares se mantienen siempre separados y los montos se guardan como enteros, sin errores de redondeo. Todo queda en una base local protegida con usuario, contraseña y bloqueo por PIN."
+        "Kakeibo lleva los ingresos y egresos del hogar: movimientos, gastos fijos, tarjetas de crédito con cuotas, préstamos e inversiones, con un resumen general y un calendario de vencimientos. Tiene una versión de escritorio para Windows y una app para Android (APK), que comparten la misma lógica.",
+        "Las dos versiones se enlazan: se vinculan una sola vez con un código de 6 dígitos y, desde ahí, lo que se carga en una aparece en la otra, siempre que se use el mismo usuario y los dos equipos estén conectados a la misma red Wi-Fi. Los datos no salen de la red de la casa y viajan cifrados. Ningún dispositivo pisa al otro: si el mismo dato cambió en los dos, el usuario elige con cuál quedarse.",
+        "Los pesos y los dólares se mantienen siempre separados y los montos se guardan como enteros, sin errores de redondeo. Cada usuario tiene sus datos aparte, protegidos con contraseña, PIN y, en el celular, huella digital."
       ],
       caracteristicas: [
+        "Versión de escritorio para Windows y app para Android",
+        "Sincronización entre la computadora y el celular por la red Wi-Fi de la casa, cifrada y sin servidores externos",
         "Resumen con ingresos, egresos y balance por moneda (ARS y USD)",
         "Gastos fijos, con débito automático y aviso de vencimientos",
         "Tarjetas de crédito: resumen del mes y compras en cuotas",
         "Préstamos e inversiones: acciones, crypto y calendario de dividendos",
-        "Historial con búsqueda y calendario de vencimientos",
+        "Ingreso con huella digital en el celular; usuarios con datos separados",
         "Modo claro y oscuro, copias de seguridad e instalador para Windows"
       ],
-      tecnologias: ["Python", "Flet", "SQLite", "pytest", "Inno Setup"],
+      tecnologias: ["Python", "Flet", "SQLite", "Android", "pytest", "Inno Setup"],
       ficha: [
+        ["Plataforma", "Windows y Android"],
         ["Lenguaje", "Python"],
-        ["Interfaz", "Flet"],
-        ["Datos", "SQLite, en una base local"],
+        ["Interfaz", "Flet: la misma base de código para escritorio y celular"],
+        ["Datos", "SQLite local, con una base aparte para cada usuario"],
+        ["Sincronización", "Por la red local (Wi-Fi), cifrada y firmada; vinculación con código de 6 dígitos y cambios para decidir cuando hay conflicto"],
         ["Pruebas", "pytest"],
-        ["Empaquetado", "PyInstaller, con instalador de Inno Setup para Windows"]
+        ["Empaquetado", "PyInstaller e instalador de Inno Setup para Windows; APK para Android"]
       ],
       anio: "2026",
       enlaces: [],
@@ -533,7 +538,13 @@ window.PORTFOLIO = {
         { src: "assets/img/software/kakeibo/oscuro-tarjetas.png", alt: "Tarjetas: total del mes, débitos automáticos y compras en cuotas" },
         { src: "assets/img/software/kakeibo/oscuro-gastos-fijos.png", alt: "Gastos fijos, con filtros y vencimientos" },
         { src: "assets/img/software/kakeibo/oscuro-inversiones.png", alt: "Inversiones: resumen y distribución" },
-        { src: "assets/img/software/kakeibo/claro-resumen.png", alt: "Resumen general en modo claro" }
+        { src: "assets/img/software/kakeibo/claro-resumen.png", alt: "Resumen general en modo claro" },
+        { src: "assets/img/software/kakeibo/movil-resumen.png", alt: "Celular: resumen del mes, con lo pendiente de pagar y el balance por moneda (datos ficticios)" },
+        { src: "assets/img/software/kakeibo/movil-movimientos.png", alt: "Celular: movimientos con buscador y filtro por tipo" },
+        { src: "assets/img/software/kakeibo/movil-tarjetas.png", alt: "Celular: tarjetas de crédito y resumen del mes" },
+        { src: "assets/img/software/kakeibo/movil-inversiones.png", alt: "Celular: inversiones, con totales y distribución" },
+        { src: "assets/img/software/kakeibo/movil-sincronizacion.png", alt: "Celular: vinculación con la computadora por la red Wi-Fi" },
+        { src: "assets/img/software/kakeibo/movil-claro-resumen.png", alt: "Celular: resumen en modo claro" }
       ]
     },
     {
