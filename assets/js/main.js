@@ -484,6 +484,10 @@
   // Nivel de 1 a 5 de cada tecnología. Sale de la proporción de proyectos que la
   // usan, salvo las que tienen un nivel propio en "nivelStack" (data.js).
   const NIVEL_MAX = 5;
+  function miembrosStack(t) {
+    const g = (D.gruposStack || []).find((x) => x.nombre === t);
+    return g ? g.miembros.join(", ") : null;
+  }
   function stack() {
     const cuenta = new Map();
     D.software.forEach((p) => p.tecnologias.forEach((t) => cuenta.set(t, (cuenta.get(t) || 0) + 1)));
@@ -491,6 +495,12 @@
     (D.stackComun || []).forEach((t) => cuenta.set(t, D.software.length));
     const nivel = new Map([...cuenta].map(([t, n]) => [t, Math.max(1, Math.round((n / D.software.length) * NIVEL_MAX))]));
     Object.entries(D.nivelStack || {}).forEach(([t, n]) => nivel.set(t, n));
+    (D.ocultarStack || []).forEach((t) => nivel.delete(t));
+    // Grupos (ver "gruposStack" en data.js): sus miembros se reemplazan por una sola fila.
+    (D.gruposStack || []).forEach((g) => {
+      g.miembros.forEach((t) => nivel.delete(t));
+      nivel.set(g.nombre, g.nivel);
+    });
     return [...nivel.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   }
 
@@ -767,7 +777,7 @@
             "ul",
             { class: "stack" },
             stack().map(([t, n]) =>
-              el("li", null, el("span", null, t), el("span", { class: "stack-barra", style: `--n:${n / NIVEL_MAX}` }), el("small", null, `${n}/${NIVEL_MAX}`))
+              el("li", null, el("span", { title: miembrosStack(t) }, t), el("span", { class: "stack-barra", style: `--n:${n / NIVEL_MAX}` }), el("small", null, `${n}/${NIVEL_MAX}`))
             )
           ),
       el("ul", { class: "etiquetas" }, col.habilidades.map((h) => el("li", null, h)))

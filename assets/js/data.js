@@ -456,6 +456,15 @@ window.PORTFOLIO = {
     "Claude (IA)": 4,
     Python: 3
   },
+  // Tecnologías de los proyectos que no se muestran en el stack.
+  ocultarStack: ["Phaser 3", "Vite"],
+  // Tecnologías que se muestran juntas en una sola fila del stack, con el nivel
+  // indicado: son distintas herramientas para una misma necesidad.
+  gruposStack: [
+    { nombre: "Android", nivel: 2, miembros: ["Android", "Kotlin", "Jetpack Compose", "Room", "Robolectric", "Android WebView"] },
+    { nombre: "Instaladores", nivel: 2, miembros: ["PyInstaller", "Inno Setup"] },
+    { nombre: "Librerías especiales", nivel: 2, miembros: ["PDFium", "rawpy", "Pillow", "MarkItDown", "Whisper", "sherpa-onnx", "ML Kit", "Leaflet"] }
+  ],
 
   fichaSoftware: [
     ["Alcance", "Proyecto end to end: de la idea y el diseño al programa terminado y listo para usar."],
