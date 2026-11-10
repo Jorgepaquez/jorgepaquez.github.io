@@ -335,7 +335,9 @@ window.PORTFOLIO = {
       "Ética profesional",
       "Venta y atención al cliente"
     ],
-    idiomas: ["Español (nativo)", "Inglés (B1)"]
+    idiomas: ["Español (nativo)", "Inglés (B1)"],
+    // Se muestran junto a los idiomas, en «Otros datos» de Sobre mí y del CV descargable.
+    otrosDatos: ["Movilidad propia", "Disponibilidad de trabajo on-site", "Disponibilidad para viajar"]
   },
 
   // Imagen de cada recuadro de "Secciones" en la página principal. Con
@@ -457,13 +459,13 @@ window.PORTFOLIO = {
     Python: 3
   },
   // Tecnologías de los proyectos que no se muestran en el stack.
-  ocultarStack: ["Phaser 3", "Vite"],
+  ocultarStack: ["Phaser 3", "Vite", "Web Audio", "Robolectric", "ML Kit", "Room", "CustomTkinter", "Leaflet", "Jetpack Compose", "PySide6", "sherpa-onnx", "Pillow", "Dart"],
   // Tecnologías que se muestran juntas en una sola fila del stack, con el nivel
   // indicado: son distintas herramientas para una misma necesidad.
   gruposStack: [
-    { nombre: "Android", nivel: 2, miembros: ["Android", "Kotlin", "Jetpack Compose", "Room", "Robolectric", "Android WebView"] },
+    { nombre: "Android", nivel: 2, miembros: ["Android", "Kotlin", "Android WebView"] },
     { nombre: "Instaladores", nivel: 2, miembros: ["PyInstaller", "Inno Setup"] },
-    { nombre: "Librerías especiales", nivel: 2, miembros: ["PDFium", "rawpy", "Pillow", "MarkItDown", "Whisper", "sherpa-onnx", "ML Kit", "Leaflet"] }
+    { nombre: "Librerías especiales", nivel: 2, miembros: ["PDFium", "rawpy", "MarkItDown", "Whisper"] }
   ],
 
   fichaSoftware: [

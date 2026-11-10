@@ -960,8 +960,8 @@
           el(
             "div",
             { class: "cv-pie-grupo" },
-            cv.idiomas.length
-              ? el("section", null, el("h3", null, "Idiomas"), el("ul", { class: "etiquetas" }, cv.idiomas.map((x) => el("li", null, x))))
+            cv.idiomas.length || (cv.otrosDatos || []).length
+              ? el("section", null, el("h3", null, "Otros datos"), el("ul", { class: "etiquetas" }, [...cv.idiomas, ...(cv.otrosDatos || [])].map((x) => el("li", null, x))))
               : null
           )
         )

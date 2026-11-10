@@ -298,7 +298,7 @@
               ["Blandas", cv.blandas || []]
             ].map(([titulo, lista]) => el("div", null, el("h3", null, titulo), el("ul", { class: "chips" }, lista.map((h) => el("li", null, h)))))
           ),
-          el("div", { class: "habilidades" }, el("h3", null, "Idiomas"), el("ul", { class: "chips" }, cv.idiomas.map((i) => el("li", null, i))))
+          el("div", { class: "habilidades" }, el("h3", null, "Otros datos"), el("ul", { class: "chips" }, [...cv.idiomas, ...(cv.otrosDatos || [])].map((i) => el("li", null, i))))
         ),
 
         seccion(
